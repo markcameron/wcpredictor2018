@@ -22,33 +22,33 @@ class TeamsTableSeeder extends Seeder {
         ],
         [
           'name' => 'Saudi Arabia',
-          'code' => 'ro',
+          'code' => 'sa',
         ],
         [
           'name' => 'Egypt',
-          'code' => 'al',
+          'code' => 'eg',
         ],
         [
           'name' => 'Uruguay',
-          'code' => 'ch',
+          'code' => 'uy',
         ],
       ],
       'B' => [
         [
           'name' => 'Portugal',
-          'code' => 'gb-eng',
+          'code' => 'pt',
         ],
         [
           'name' => 'Spain',
-          'code' => 'ru',
+          'code' => 'es',
         ],
         [
           'name' => 'Morocco',
-          'code' => 'gb-wls',
+          'code' => 'ma',
         ],
         [
           'name' => 'Iran',
-          'code' => 'sk',
+          'code' => 'ir',
         ],
       ],
       'C' => [
@@ -58,51 +58,51 @@ class TeamsTableSeeder extends Seeder {
         ],
         [
           'name' => 'Australia',
-          'code' => 'ua',
+          'code' => 'au',
         ],
         [
           'name' => 'Peru',
-          'code' => 'pl',
+          'code' => 'pe',
         ],
         [
           'name' => 'Denmark',
-          'code' => 'gb-nir',
+          'code' => 'dk',
         ],
       ],
       'D' => [
         [
           'name' => 'Argentina',
-          'code' => 'es',
+          'code' => 'ar',
         ],
         [
           'name' => 'Iceland',
-          'code' => 'cz',
+          'code' => 'is',
         ],
         [
           'name' => 'Croatia',
-          'code' => 'tr',
+          'code' => 'hr',
         ],
         [
           'name' => 'Nigeria',
-          'code' => 'hr',
+          'code' => 'ng',
         ],
       ],
       'E' => [
         [
           'name' => 'Brazil',
-          'code' => 'be',
+          'code' => 'br',
         ],
         [
           'name' => 'Switzerland',
-          'code' => 'it',
+          'code' => 'ch',
         ],
         [
           'name' => 'Costa Rica',
-          'code' => 'ie',
+          'code' => 'cr',
         ],
         [
           'name' => 'Serbia',
-          'code' => 'se',
+          'code' => 'rs',
         ],
       ],
       'F' => [
@@ -112,15 +112,15 @@ class TeamsTableSeeder extends Seeder {
         ],
         [
           'name' => 'Mexico',
-          'code' => 'is',
+          'code' => 'mx',
         ],
         [
           'name' => 'Sweden',
-          'code' => 'at',
+          'code' => 'se',
         ],
         [
           'name' => 'South Korea',
-          'code' => 'hu',
+          'code' => 'kr',
         ],
       ],
       'G' => [
@@ -130,33 +130,33 @@ class TeamsTableSeeder extends Seeder {
         ],
         [
           'name' => 'Panama',
-          'code' => 'is',
+          'code' => 'pa',
         ],
         [
           'name' => 'Tunisia',
-          'code' => 'at',
+          'code' => 'tn',
         ],
         [
           'name' => 'England',
-          'code' => 'hu',
+          'code' => 'gb-eng',
         ],
       ],
       'H' => [
         [
           'name' => 'Poland',
-          'code' => 'de',
+          'code' => 'pl',
         ],
         [
           'name' => 'Senegal',
-          'code' => 'is',
+          'code' => 'sn',
         ],
         [
           'name' => 'Colombia',
-          'code' => 'at',
+          'code' => 'co',
         ],
         [
           'name' => 'Japan',
-          'code' => 'hu',
+          'code' => 'jp',
         ],
       ],
     ];
