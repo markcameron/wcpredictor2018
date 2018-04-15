@@ -18,3 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('admin/matches', 'Admin\MatchesController', [
+  'only' => ['index', 'edit', 'update']
+]);
+
+Route::resource('admin/goals', 'Admin\GoalsController', [
+  'only' => ['create', 'store', 'edit', 'update']
+]);
