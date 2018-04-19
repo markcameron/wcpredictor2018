@@ -106,9 +106,23 @@ const webpackConfig = merge(baseWebpackConfig, {
     new SWPrecacheWebpackPlugin({
       cacheId: 'predictor',
       filename: 'service-worker.js',
-      staticFileGlobs: ['dist/**/*.{js,html,css}'],
+      staticFileGlobs: ['dist/**/*.{js,html,css,svg}'],
       minify: true,
-      stripPrefix: 'dist/'
+      stripPrefix: 'dist/',
+      runtimeCaching: [
+        {
+          urlPattern: /^https:\/\/fonts\.googleapis\.com\//,
+          handler: 'cacheFirst'
+        },
+        {
+          urlPattern: /^https:\/\/fonts\.gstatic\.com\//,
+          handler: 'cacheFirst'
+        },
+        {
+          urlPattern: /^https:\/\/code\.getmdl\.io\//,
+          handler: 'cacheFirst'
+        }
+      ]
     })
   ]
 })

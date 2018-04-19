@@ -8,8 +8,8 @@
     <div class="mdl-layout__drawer">
       <span class="mdl-layout-title">Predictor</span>
       <nav class="mdl-navigation">
-        <router-link class="mdl-navigation__link" to="/" @click.native="hideMenu">Home</router-link>
-        <router-link class="mdl-navigation__link" to="/matches" @click.native="hideMenu">Matches</router-link>
+        <router-link class="mdl-navigation__link" to="/" @click.native="hideMenu">Results</router-link>
+        <router-link class="mdl-navigation__link" to="/predictions" @click.native="hideMenu">My Predictions</router-link>
       </nav>
     </div>
     <main class="mdl-layout__content">
@@ -37,4 +37,5 @@
 <style>
  @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
  @import url('https://code.getmdl.io/1.3.0/material.red-blue.min.css');
+ @import "../node_modules/flag-icon-css/css/flag-icon.css"
 </style>

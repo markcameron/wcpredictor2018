@@ -9,6 +9,9 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  api: {
+    url: 'http://wc2018.local/'
+  },
   router,
   template: '<App/>',
   components: { App }
