@@ -3,9 +3,10 @@
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Models\Match;
 use Response;
 use App\Http\Controllers\Controller;
+
+use App\Models\Match;
 
 class MatchesController extends Controller {
 

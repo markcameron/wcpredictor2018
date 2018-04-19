@@ -21,4 +21,6 @@ Route::group(['middleware' => ['api', 'cors']], function ($router) {
 
   Route::get('matches/list', 'Api\MatchesController@list');
 
+  Route::get('predictions/list', 'Api\PredictionsController@list');
+
 });
