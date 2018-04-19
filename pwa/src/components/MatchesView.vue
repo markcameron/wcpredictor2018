@@ -37,7 +37,12 @@
      },
 
      saveMatchesToCache () {
-       axios.get(this.$root.$options.api.url + 'api/matches/list')
+       axios.get(this.$root.$options.api.url + 'api/matches/list', {
+         headers: {
+           Access: 'json',
+           Authorization: 'Bearer ' + this.$root.$options.access_token
+         }
+       })
          .then((response) => {
            localStorage.setItem('matches', JSON.stringify(response.data))
          })
