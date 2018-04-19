@@ -3,7 +3,7 @@
   <div>
 
     <ul class="demo-list-item mdl-list">
-      <li v-for="match in this.getMatches()" class="mdl-list__item">
+      <li v-for="match in matches" class="mdl-list__item">
         <span class="mdl-list__item-primary-content">
           <span :class="'flag-icon-' + match.home_team_code" class="flex-media-figure flag-icon"></span>
           {{ match.home_team }} - {{ match.away_team }}
@@ -22,6 +22,7 @@
  export default {
    data () {
      return {
+       matches: null
      }
    },
 
@@ -30,9 +31,9 @@
      getMatches () {
        if (navigator.onLine) {
          this.saveMatchesToCache()
-         return JSON.parse(localStorage.getItem('matches'))
+         console.log('after save to cache')
        } else {
-         return JSON.parse(localStorage.getItem('matches'))
+         this.matches = JSON.parse(localStorage.getItem('matches'))
        }
      },
 
@@ -44,6 +45,9 @@
          }
        })
          .then((response) => {
+           console.log('response')
+           this.matches = response.data
+           console.log(this.matches)
            localStorage.setItem('matches', JSON.stringify(response.data))
          })
          .catch((error) => {
