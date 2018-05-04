@@ -1,30 +1,64 @@
 <template>
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">WC 2018 Predictor</span>
-      </div>
-    </header>
-    <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title">Predictor</span>
-      <nav class="mdl-navigation">
-        <router-link class="mdl-navigation__link" to="/" @click.native="hideMenu">Results</router-link>
-        <router-link class="mdl-navigation__link" to="/predictions" @click.native="hideMenu">My Predictions</router-link>
-      </nav>
-    </div>
-    <main class="mdl-layout__content">
-      <div class="page-content">
+
+  <div class="page-container">
+
+    <md-app md-waterfall md-mode="fixed" style="height: 100vh;">
+      <md-app-toolbar class="md-dense md-primary">
+        <div class="md-toolbar-row">
+          <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
+            <md-icon>menu</md-icon>
+          </md-button>
+
+          <span class="md-title">Predictor</span>
+        </div>
+      </md-app-toolbar>
+
+      <md-app-drawer :md-active.sync="menuVisible">
+        <md-toolbar class="md-primary" md-elevation="0">Predictor</md-toolbar>
+
+        <md-list>
+
+          <md-list-item @click="menuVisible = false; $router.push('/');">
+            <md-icon>move_to_inbox</md-icon>
+            <span class="md-list-item-text">Home</span>
+          </md-list-item>
+
+          <md-list-item @click="menuVisible = false; $router.push('/login');">
+              <md-icon>send</md-icon>
+              <span class="md-list-item-text">Login</span>
+          </md-list-item>
+
+          <md-list-item @click="menuVisible = false; $router.push('/matches');">
+            <md-icon>move_to_inbox</md-icon>
+            <span class="md-list-item-text">Matches</span>
+          </md-list-item>
+
+          <md-list-item @click="menuVisible = false; $router.push('/predications');">
+            <md-icon>send</md-icon>
+            <span class="md-list-item-text">Predictions</span>
+          </md-list-item>
+
+        </md-list>
+      </md-app-drawer>
+
+      <md-app-content>
         <router-view></router-view>
-      </div>
-    </main>
+      </md-app-content>
+
+    </md-app>
+
   </div>
+
 </template>
 
 <script>
- require('material-design-lite')
-
  export default {
    name: 'app',
+   data: function () {
+     return {
+       menuVisible: false
+     }
+   },
    methods: {
      hideMenu: function () {
        document.getElementsByClassName('mdl-layout__drawer')[0].classList.remove('is-visible')
@@ -35,7 +69,7 @@
 </script>
 
 <style>
+ @import url('https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900');
  @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
- @import url('https://code.getmdl.io/1.3.0/material.red-blue.min.css');
  @import "../node_modules/flag-icon-css/css/flag-icon.css"
 </style>

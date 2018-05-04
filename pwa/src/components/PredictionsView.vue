@@ -49,7 +49,7 @@
    },
 
    mounted () {
-     this.getPredictions()
+     //     this.getPredictions()
    }
  }
 </script>

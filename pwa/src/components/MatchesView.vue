@@ -1,18 +1,24 @@
 <template>
 
-  <div>
+  <md-list class="match-list">
 
-    <ul class="demo-list-item mdl-list">
-      <li v-for="match in matches" class="mdl-list__item">
-        <span class="mdl-list__item-primary-content">
-          <span :class="'flag-icon-' + match.home_team_code" class="flex-media-figure flag-icon"></span>
-          {{ match.home_team }} - {{ match.away_team }}
-          <span :class="'flag-icon-' + match.away_team_code" class="flex-media-figure flag-icon"></span>
-        </span>
-      </li>
-    </ul>
+    <md-list-item v-for="match in this.matches">
+      <md-icon :class="'flag-icon-' + match.home_team_code" class="flex-media-figure flag-icon"></md-icon>
+      <div class="md-list-item-text">{{ match.home_team }}</div>
+      <div v-if="!hasResult(match)" class="md-list-item-text text-uppercase text-center">
+        <span class="md-body-2">{{ match.date | formatDate }}</span>
+        <span class="md-title">{{ match.date | formatTime }}</span>
+      </div>
+      <div v-if="hasResult(match)" class="md-list-item-text text-center">
+        <span class="md-title">{{ match.score_home }} - {{ match.score_away }}</span>
+      </div>
+      <div class="md-list-item-text text-right">
+        <span>{{ match.away_team }}</span>
+      </div>
+      <md-icon :class="'flag-icon-' + match.away_team_code" class="flex-media-figure flag-icon"></md-icon>
+    </md-list-item>
 
-  </div>
+  </md-list>
 
 </template>
 
@@ -30,42 +36,72 @@
 
      getMatches () {
        if (navigator.onLine) {
-         this.saveMatchesToCache()
-         console.log('after save to cache')
+         axios.get(this.$root.$options.api.url + 'api/matches/list', {
+           headers: {
+             Access: 'json',
+             Authorization: 'Bearer ' + this.$root.$options.access_token
+           }
+         })
+           .then((response) => {
+             console.log(response.data)
+             this.matches = response.data
+             localStorage.setItem('matches', JSON.stringify(response.data))
+           })
+           .catch((error) => {
+             console.log(error)
+           })
        } else {
          this.matches = JSON.parse(localStorage.getItem('matches'))
        }
      },
 
-     saveMatchesToCache () {
-       axios.get(this.$root.$options.api.url + 'api/matches/list', {
-         headers: {
-           Access: 'json',
-           Authorization: 'Bearer ' + this.$root.$options.access_token
-         }
-       })
-         .then((response) => {
-           console.log('response')
-           this.matches = response.data
-           console.log(this.matches)
-           localStorage.setItem('matches', JSON.stringify(response.data))
-         })
-         .catch((error) => {
-           console.log(error)
-         })
+     hasResult (match) {
+       var hasScore = match.score_home != null && match.score_away != null
+
+       if (match.can_predict === 0 && hasScore) {
+         return true
+       }
+
+       if (hasScore) {
+         return true
+       }
+
+       return false
+     },
+
+     validateLogin () {
+       if (!this.$root.$options.access_token) {
+         this.$router.push({name: 'login'})
+         return false
+       }
+
+       return true
      }
 
    },
 
    mounted () {
-     this.getMatches()
+     if (this.validateLogin()) {
+       this.getMatches()
+     }
    }
  }
 </script>
 
-<style scoped>
- .list {
-   width: 100%;
-   padding: 0;
+<style>
+ .text-uppercase {
+   text-transform:uppercase;
+ }
+ .text-center {
+   text-align:center;
+ }
+ .text-right{
+   text-align:right;
+ }
+ .match-list .md-list-item-content {
+   padding:4px 0;
+ }
+ .match-list .md-list-item-content>.md-icon:first-child {
+   margin-right: 16px;
  }
 </style>
