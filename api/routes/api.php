@@ -20,7 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['api', 'cors', 'auth:api']], function ($router) {
 
   Route::get('matches/list', 'Api\MatchesController@list');
-
   Route::get('predictions/list', 'Api\PredictionsController@list');
 
 });

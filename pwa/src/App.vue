@@ -33,7 +33,7 @@
             <span class="md-list-item-text">Matches</span>
           </md-list-item>
 
-          <md-list-item @click="menuVisible = false; $router.push('/predications');">
+          <md-list-item @click="menuVisible = false; $router.push('/predictions');">
             <md-icon>send</md-icon>
             <span class="md-list-item-text">Predictions</span>
           </md-list-item>
