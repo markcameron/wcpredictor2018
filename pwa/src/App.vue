@@ -9,7 +9,7 @@
             <md-icon>menu</md-icon>
           </md-button>
 
-          <span class="md-title">Predictor</span>
+          <span class="md-title">{{ title }}</span>
         </div>
       </md-app-toolbar>
 
@@ -56,14 +56,14 @@
    name: 'app',
    data: function () {
      return {
-       menuVisible: false
+       menuVisible: false,
+       title: ''
      }
    },
    methods: {
-     hideMenu: function () {
-       document.getElementsByClassName('mdl-layout__drawer')[0].classList.remove('is-visible')
-       document.getElementsByClassName('mdl-layout__obfuscator')[0].classList.remove('is-visible')
-     }
+   },
+   updated () {
+     this.title = this.$route.meta.title
    }
  }
 </script>

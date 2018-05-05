@@ -12,6 +12,9 @@ new Vue({
   api: {
     url: 'http://wc2018.local/'
   },
+  vars: {
+    title: ''
+  },
   router,
   template: '<App/>',
   components: { App }

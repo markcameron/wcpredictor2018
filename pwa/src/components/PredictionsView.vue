@@ -2,7 +2,7 @@
 
   <md-list class="match-list">
 
-    <md-list-item v-for="match in this.predictions">
+    <md-list-item v-for="match in this.predictions" v-bind:key="match.id">
       <md-icon :class="'flag-icon-' + match.home_team_code" class="flex-media-figure flag-icon"></md-icon>
       <div class="md-list-item-text">{{ match.home_team }}</div>
       <div v-if="!canPredict(match)" class="md-list-item-text text-center">
@@ -82,6 +82,7 @@
    mounted () {
      this.getPredictions()
    }
+
  }
 </script>
 

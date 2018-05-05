@@ -34,13 +34,17 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      component: LoginView
+      component: LoginView,
+      meta: {
+        title: 'Login'
+      }
     },
     {
       path: '/matches',
       name: 'matches',
       component: MatchesView,
       meta: {
+        title: 'Matches',
         requires_auth: true
       }
     },
@@ -49,6 +53,7 @@ export default new Router({
       name: 'predictions',
       component: PredictionsView,
       meta: {
+        title: 'Predictions',
         requires_auth: true
       }
     }

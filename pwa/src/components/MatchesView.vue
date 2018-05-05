@@ -2,7 +2,7 @@
 
   <md-list class="match-list">
 
-    <md-list-item v-for="match in this.matches">
+    <md-list-item v-for="match in this.matches" v-bind:key="match.id">
       <md-icon :class="'flag-icon-' + match.home_team_code" class="flex-media-figure flag-icon"></md-icon>
       <div class="md-list-item-text">{{ match.home_team }}</div>
       <div v-if="!hasResult(match)" class="md-list-item-text text-uppercase text-center">
@@ -85,6 +85,7 @@
        this.getMatches()
      }
    }
+
  }
 </script>
 
