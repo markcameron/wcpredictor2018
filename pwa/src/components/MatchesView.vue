@@ -67,25 +67,12 @@
        }
 
        return false
-     },
-
-     validateLogin () {
-       console.log('validateLogin')
-       console.log(this.$root.$options)
-       if (!this.$root.$options.api.token) {
-         this.$router.push({name: 'login'})
-         return false
-       }
-
-       return true
      }
 
    },
 
    mounted () {
-     if (this.validateLogin()) {
-       this.getMatches()
-     }
+     this.getMatches()
    }
 
  }

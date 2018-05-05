@@ -35,7 +35,6 @@
    methods: {
 
      getPredictions () {
-       console.log('get preds')
        if (navigator.onLine) {
          axios.get(this.$root.$options.api.url + 'api/predictions/list', {
            headers: {

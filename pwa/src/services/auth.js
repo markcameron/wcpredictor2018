@@ -4,7 +4,6 @@ export default {
   },
 
   check () {
-    console.log('in check: ' + localStorage.getItem('token'))
     return localStorage.getItem('token')
   }
 }
