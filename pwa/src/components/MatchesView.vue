@@ -39,7 +39,7 @@
          axios.get(this.$root.$options.api.url + 'api/matches/list', {
            headers: {
              Access: 'json',
-             Authorization: 'Bearer ' + this.$root.$options.access_token
+             Authorization: 'Bearer ' + this.$root.$options.api.token
            }
          })
            .then((response) => {
@@ -70,7 +70,9 @@
      },
 
      validateLogin () {
-       if (!this.$root.$options.access_token) {
+       console.log('validateLogin')
+       console.log(this.$root.$options)
+       if (!this.$root.$options.api.token) {
          this.$router.push({name: 'login'})
          return false
        }

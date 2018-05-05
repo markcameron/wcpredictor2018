@@ -40,7 +40,7 @@
          axios.get(this.$root.$options.api.url + 'api/predictions/list', {
            headers: {
              Access: 'json',
-             Authorization: 'Bearer ' + this.$root.$options.access_token
+             Authorization: 'Bearer ' + this.$root.$options.api.token
            }
          })
            .then((response) => {

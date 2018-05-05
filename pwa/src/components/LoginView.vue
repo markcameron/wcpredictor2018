@@ -109,7 +109,8 @@
 
        axios.post(this.$root.$options.api.url + 'oauth/token', params)
          .then((response) => {
-           this.$root.$options.access_token = response.data.access_token
+           this.$root.$options.api.token = response.data.access_token
+           localStorage.setItem('token', response.data.access_token)
            this.$router.push({name: 'matches'})
          })
          .catch((error) => {

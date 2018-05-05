@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import user from './services/auth'
 
 Vue.config.productionTip = false
 
@@ -10,7 +11,8 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   api: {
-    url: 'http://wc2018.local/'
+    url: 'http://wc2018.local/',
+    token: localStorage.getItem('token')
   },
   vars: {
     title: ''
@@ -18,4 +20,16 @@ new Vue({
   router,
   template: '<App/>',
   components: { App }
+})
+
+router.beforeEach((to, from, next) => {
+  if (!to.meta.requires_auth) {
+    next()
+  }
+
+  if (!user.check()) {
+    next('/login')
+  }
+
+  next()
 })

@@ -14,7 +14,7 @@
       </md-app-toolbar>
 
       <md-app-drawer :md-active.sync="menuVisible">
-        <md-toolbar class="md-primary" md-elevation="0">Predictor</md-toolbar>
+        <md-toolbar class="md-primary" md-elevation="0"><span class="md-title">Predictor</span></md-toolbar>
 
         <md-list>
 
@@ -61,9 +61,19 @@
      }
    },
    methods: {
+     userLoggedIn () {
+       if (this.$root.$options.api.token === null) {
+         return false
+       }
+
+       return true
+     }
    },
    updated () {
      this.title = this.$route.meta.title
+   },
+   mounted () {
+     console.log('mounted')
    }
  }
 </script>
