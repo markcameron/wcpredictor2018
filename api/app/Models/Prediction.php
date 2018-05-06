@@ -23,4 +23,8 @@ class Prediction extends Model {
     return $query->whereUserId(\Auth::user()->id);
   }
 
+  public function scopeForCurrentUser($query) {
+    return $query->whereUserId(\Auth::user()->id);
+  }
+
 }

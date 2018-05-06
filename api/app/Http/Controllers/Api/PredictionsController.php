@@ -2,12 +2,15 @@
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
 use Response;
 use App\Http\Controllers\Controller;
 
 use App\Models\Match;
 use App\Models\Prediction;
+
+use App\Http\Requests\SubmitPredictionRequest;
+
+use Illuminate\Auth\AuthManager;
 
 class PredictionsController extends Controller {
 
@@ -26,6 +29,46 @@ class PredictionsController extends Controller {
     );
 
     return Response::json($matches, 200);
+  }
+
+  /**
+   * Get a single match by id
+   *
+   * @param int $id
+   * The match ID
+   *
+   * @return json
+   */
+  public function update(AuthManager $auth, SubmitPredictionRequest $request, $match_id) {
+    $this->user = $auth->user();
+
+    $prediction = Prediction::whereMatchId($match_id)
+                            ->whereUserId($this->user->id)
+                            ->first();
+
+
+    if (!$this->user->can_predict) {
+      return Response::json(['No longer permitted to submit predictions'], 403);
+    }
+
+    if (is_null($prediction)) {
+      $prediction = Prediction::create(
+        [
+          'user_id' => $this->user->id,
+          'match_id' => $match_id,
+          'score_home' => $request->score_home,
+          'score_away' => $request->score_away,
+        ]
+      );
+    }
+    else {
+      $prediction->score_home = $request->score_home;
+      $prediction->score_away = $request->score_away;
+
+      $prediction->update();
+    }
+
+    return Response::json(['prediction' => $prediction], 200);
   }
 
   /**

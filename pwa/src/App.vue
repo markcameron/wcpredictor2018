@@ -42,7 +42,9 @@
       </md-app-drawer>
 
       <md-app-content>
-        <router-view></router-view>
+        <keep-alive include="predictions">
+          <router-view></router-view>
+        </keep-alive>
       </md-app-content>
 
     </md-app>
@@ -77,6 +79,7 @@
    },
 
    mounted () {
+     this.title = this.$route.meta.title
    }
  }
 </script>

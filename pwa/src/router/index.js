@@ -7,7 +7,6 @@ import HelloView from '@/components/Hello'
 import LoginView from '@/components/LoginView'
 import MatchesView from '@/components/MatchesView'
 import PredictionsView from '@/components/PredictionsView'
-import MatchPredictionView from '@/components/MatchPredictionView'
 import moment from 'moment'
 
 Vue.use(Router)
@@ -55,16 +54,6 @@ export default new Router({
       component: PredictionsView,
       meta: {
         title: 'Predictions',
-        requires_auth: true
-      }
-    },
-    {
-      path: '/prediction/:id',
-      name: 'prediction',
-      component: MatchPredictionView,
-      props: true,
-      meta: {
-        title: 'Prediction',
         requires_auth: true
       }
     }

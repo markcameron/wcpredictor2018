@@ -114,6 +114,7 @@
            this.$router.push({name: 'matches'})
          })
          .catch((error) => {
+           this.sending = false
            console.log(error)
          })
      }
