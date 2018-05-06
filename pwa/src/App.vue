@@ -19,7 +19,7 @@
         <md-list>
 
           <md-list-item @click="menuVisible = false; $router.push('/');">
-            <md-icon>move_to_inbox</md-icon>
+            <md-icon>home</md-icon>
             <span class="md-list-item-text">Home</span>
           </md-list-item>
 
@@ -29,13 +29,18 @@
           </md-list-item>
 
           <md-list-item @click="menuVisible = false; $router.push('/matches');">
-            <md-icon>move_to_inbox</md-icon>
+            <md-icon>list</md-icon>
             <span class="md-list-item-text">Matches</span>
           </md-list-item>
 
           <md-list-item @click="menuVisible = false; $router.push('/predictions');">
-            <md-icon>send</md-icon>
+            <md-icon>assignment</md-icon>
             <span class="md-list-item-text">Predictions</span>
+          </md-list-item>
+
+          <md-list-item @click="menuVisible = false; $router.push('/leaderboard');">
+            <md-icon>grade</md-icon>
+            <span class="md-list-item-text">Leaderboard</span>
           </md-list-item>
 
         </md-list>

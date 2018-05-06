@@ -7,6 +7,7 @@ import HelloView from '@/components/Hello'
 import LoginView from '@/components/LoginView'
 import MatchesView from '@/components/MatchesView'
 import PredictionsView from '@/components/PredictionsView'
+import LeaderboardView from '@/components/LeaderboardView'
 import moment from 'moment'
 
 Vue.use(Router)
@@ -54,6 +55,15 @@ export default new Router({
       component: PredictionsView,
       meta: {
         title: 'Predictions',
+        requires_auth: true
+      }
+    },
+    {
+      path: '/leaderboard',
+      name: 'leaderboard',
+      component: LeaderboardView,
+      meta: {
+        title: 'Leaderboard',
         requires_auth: true
       }
     }

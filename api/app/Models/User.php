@@ -37,6 +37,10 @@ class User extends Authenticatable {
     return $this->first_name .' '. $this->last_name;
   }
 
+  public function getInitialsAttribute() {
+    return substr(ucfirst($this->first_name), 0, 1) . substr(ucfirst($this->last_name), 0, 1) ;
+  }
+
   public function predictions() {
     return $this->hasMany('App\Models\Prediction');
   }
