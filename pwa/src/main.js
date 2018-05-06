@@ -15,7 +15,8 @@ new Vue({
     token: localStorage.getItem('token')
   },
   vars: {
-    title: ''
+    title: '',
+    predictions: null
   },
   router,
   template: '<App/>',

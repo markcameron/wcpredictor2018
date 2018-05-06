@@ -54,12 +54,14 @@
 <script>
  export default {
    name: 'app',
+
    data: function () {
      return {
        menuVisible: false,
        title: ''
      }
    },
+
    methods: {
      userLoggedIn () {
        if (this.$root.$options.api.token === null) {
@@ -69,11 +71,12 @@
        return true
      }
    },
+
    updated () {
      this.title = this.$route.meta.title
    },
+
    mounted () {
-     console.log('mounted')
    }
  }
 </script>
@@ -82,4 +85,29 @@
  @import url('https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900');
  @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
  @import "../node_modules/flag-icon-css/css/flag-icon.css"
+</style>
+
+<style>
+ .text-uppercase {
+   text-transform:uppercase;
+ }
+ .text-center {
+   text-align:center;
+ }
+ .text-right{
+   text-align:right;
+ }
+ .md-app-content {
+   padding: 0;
+ }
+ .match-list .md-list-item-content>.md-icon:first-child {
+   margin-right: 16px;
+ }
+ .md-list-item-content>.md-icon:nth-last-child(2) {
+   margin-left: 16px;
+ }
+ .md-app-content .md-card.prediction {
+   margin: 0;
+   overflow: visible;
+ }
 </style>

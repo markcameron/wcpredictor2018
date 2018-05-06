@@ -2,7 +2,7 @@
 
   <md-list class="match-list">
 
-    <md-list-item v-for="match in this.predictions" v-bind:key="match.id">
+    <md-list-item v-for="(match, index) in this.predictions" v-bind:key="index" @click="predictMatch(index)">
       <md-icon :class="'flag-icon-' + match.home_team_code" class="flex-media-figure flag-icon"></md-icon>
       <div class="md-list-item-text">{{ match.home_team }}</div>
       <div v-if="!canPredict(match)" class="md-list-item-text text-center">
@@ -44,6 +44,7 @@
          })
            .then((response) => {
              this.predictions = response.data
+             this.$root.$options.vars.predictions = response.data
              localStorage.setItem('predictions', JSON.stringify(response.data))
            })
            .catch((error) => {
@@ -74,6 +75,11 @@
        }
 
        return false
+     },
+
+     predictMatch (match) {
+       console.log(match)
+       this.$router.push({name: 'prediction', params: {id: match}})
      }
 
    },

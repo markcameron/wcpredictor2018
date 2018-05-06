@@ -77,21 +77,3 @@
 
  }
 </script>
-
-<style>
- .text-uppercase {
-   text-transform:uppercase;
- }
- .text-center {
-   text-align:center;
- }
- .text-right{
-   text-align:right;
- }
- .match-list .md-list-item-content {
-   padding:4px 0;
- }
- .match-list .md-list-item-content>.md-icon:first-child {
-   margin-right: 16px;
- }
-</style>
