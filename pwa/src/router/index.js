@@ -5,6 +5,7 @@ import 'vue-material/dist/vue-material.css'
 import 'vue-material/dist/theme/default.css'
 import HelloView from '@/components/Hello'
 import LoginView from '@/components/LoginView'
+import MatchView from '@/components/MatchView'
 import MatchesView from '@/components/MatchesView'
 import PredictionsView from '@/components/PredictionsView'
 import LeaderboardView from '@/components/LeaderboardView'
@@ -46,6 +47,15 @@ export default new Router({
       component: MatchesView,
       meta: {
         title: 'Matches',
+        requires_auth: true
+      }
+    },
+    {
+      path: '/match/:id',
+      name: 'match',
+      component: MatchView,
+      meta: {
+        title: 'Match',
         requires_auth: true
       }
     },

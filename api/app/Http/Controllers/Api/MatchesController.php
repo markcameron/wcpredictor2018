@@ -104,7 +104,8 @@ class MatchesController extends Controller {
 
     foreach ($match->predictions as $prediction) {
       $predictions[] = [
-        'user' => $prediction->user->full_name,
+        'name' => $prediction->user->full_name,
+        'initials' => $prediction->user->initials,
         'score_home' => $prediction->score_home,
         'score_away' => $prediction->score_away,
       ];

@@ -16,6 +16,7 @@ new Vue({
   },
   vars: {
     title: '',
+    matches: null,
     predictions: null
   },
   router,
