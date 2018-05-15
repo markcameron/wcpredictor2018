@@ -16,7 +16,7 @@ class MatchesController extends Controller {
    * @return json
    */
   public function list() {
-    $matches = Match::orderBy('date', 'DESC')->get();
+    $matches = Match::orderBy('date', 'ASC')->get();
 
     $matches = $matches->map(
       function($match) {

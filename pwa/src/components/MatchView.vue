@@ -40,7 +40,9 @@
               {{ user.initials }}
             </md-avatar>
             <span class="md-list-item-text">{{ user.name }}</span>
-            <span class="md-list-item-text">{{ user.score_home }} - {{ user.score_away }}</span>
+            <div class="md-list-item-text text-right">
+              <span class="md-title">{{ user.score_home }} - {{ user.score_away }}</span>
+            </div>
           </md-list-item>
 
         </md-list>

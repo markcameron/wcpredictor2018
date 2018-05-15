@@ -6,8 +6,13 @@
       <md-avatar class="md-avatar-icon md-primary">
         {{ user.initials }}
       </md-avatar>
-      <span class="md-list-item-text">{{ user.full_name }}</span>
-      <span class="md-list-item-text">{{ user.score }}</span>
+      <div class="md-list-item-text">
+        <span>{{ user.full_name }}</span>
+        <span>Hopp Schwiiz</span>
+      </div>
+      <div class="md-list-item-text text-right">
+        <span class="md-title">{{ user.score }}</span>
+      </div>
     </md-list-item>
 
   </md-list>
