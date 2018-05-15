@@ -126,6 +126,9 @@
    margin: 0;
    overflow: visible;
  }
+ .md-app-content .md-card {
+   margin-right: 0px;
+ }
  .md-card.match-info {
    margin:0;
  }
