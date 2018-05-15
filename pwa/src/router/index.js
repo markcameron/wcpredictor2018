@@ -5,6 +5,7 @@ import 'vue-material/dist/vue-material.css'
 import 'vue-material/dist/theme/default.css'
 import HelloView from '@/components/Hello'
 import LoginView from '@/components/LoginView'
+import SignupView from '@/components/SignupView'
 import MatchView from '@/components/MatchView'
 import MatchesView from '@/components/MatchesView'
 import PredictionsView from '@/components/PredictionsView'
@@ -39,6 +40,14 @@ export default new Router({
       component: LoginView,
       meta: {
         title: 'Login'
+      }
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: SignupView,
+      meta: {
+        title: 'Signup'
       }
     },
     {

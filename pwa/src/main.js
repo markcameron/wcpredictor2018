@@ -12,7 +12,7 @@ new Vue({
   el: '#app',
   api: {
     url: 'http://wc2018.local/',
-    token: localStorage.getItem('token')
+    token: null
   },
   vars: {
     title: '',
@@ -27,6 +27,7 @@ new Vue({
 })
 
 router.beforeEach((to, from, next) => {
+  console.log('before each route')
   if (!to.meta.requires_auth) {
     next()
   } else if (!user.check()) {

@@ -3,7 +3,8 @@
   <div class="page-container">
 
     <md-app md-waterfall md-mode="fixed" style="height: 100vh;">
-      <md-app-toolbar class="md-dense md-primary">
+
+      <md-app-toolbar class="md-dense md-primary" v-if="userLoggedIn()">
         <div class="md-toolbar-row">
           <md-button class="md-icon-button" v-if="!onMatchDetail" @click="menuVisible = !menuVisible">
             <md-icon>menu</md-icon>
@@ -17,7 +18,7 @@
         </div>
       </md-app-toolbar>
 
-      <md-app-drawer :md-active.sync="menuVisible">
+      <md-app-drawer :md-active.sync="menuVisible" v-if="userLoggedIn()">
         <md-toolbar class="md-primary" md-elevation="0"><span class="md-title">Predictor</span></md-toolbar>
 
         <md-list>
@@ -50,7 +51,7 @@
         </md-list>
       </md-app-drawer>
 
-      <md-app-content>
+      <md-app-content v-bind:class="{ 'md-primary': !userLoggedIn(), 'no-padding': userLoggedIn() }" class="md-layout md-alignment-center-center">
         <keep-alive include="predictions">
           <router-view></router-view>
         </keep-alive>
@@ -76,10 +77,13 @@
 
    methods: {
      userLoggedIn () {
+       console.log('checklogin')
        if (this.$root.$options.api.token === null) {
+         console.log('false')
          return false
        }
 
+       console.log('true')
        return true
      },
 
@@ -95,6 +99,9 @@
    },
 
    mounted () {
+     if (!this.userLoggedIn()) {
+       this.$router.push({name: 'login'})
+     }
      this.title = this.$route.meta.title
    }
  }
@@ -116,7 +123,7 @@
  .text-right{
    text-align:right;
  }
- .md-app-content {
+ .md-app-content.no-padding {
    padding: 0;
  }
  .match-list .md-list-item-content>.md-icon:first-child {
