@@ -54,6 +54,7 @@ export default new Router({
       path: '/match/:id',
       name: 'match',
       component: MatchView,
+      props: true,
       meta: {
         title: 'Match',
         requires_auth: true

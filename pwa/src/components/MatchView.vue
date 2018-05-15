@@ -2,16 +2,40 @@
 
   <div>
 
-    <md-card class="md-primary match-detail">
+    <md-card class="md-primary match-info" v-if="match">
       <md-card-header>
+
+        <md-list class="match-result-list md-theme-primary">
+
+          <md-list-item>
+            <md-icon :class="'flag-icon-' + match.home_team_code" class="flex-media-figure flag-icon"></md-icon>
+            <div class="md-list-item-text md-title">
+              {{ match.home_team }}
+            </div>
+            <div class="md-list-item-text md-title prediction-value text-center">
+              {{ match.score_home }}
+            </div>
+          </md-list-item>
+
+          <md-list-item>
+            <md-icon :class="'flag-icon-' + match.away_team_code" class="flex-media-figure flag-icon"></md-icon>
+            <span class="md-list-item-text md-title">
+              {{ match.away_team }}
+            </span>
+            <div class="md-list-item-text md-title prediction-value text-center">
+              {{ match.score_away }}
+            </div>
+          </md-list-item>
+
+        </md-list>
 
       </md-card-header>
 
       <md-card-content>
 
-        <md-list class="match-list" v-if="show_predictions_list">
+        <md-list class="match-list">
 
-          <md-list-item v-for="user in this.match.predictions" v-bind:key="match.id">
+          <md-list-item v-for="user in match.predictions" v-bind:key="match.id">
             <md-avatar class="md-avatar-icon md-primary">
               {{ user.initials }}
             </md-avatar>
@@ -36,6 +60,7 @@
 
    data () {
      return {
+       show_predictions_list: false,
        match: null
      }
    },
@@ -48,12 +73,25 @@
        } else {
          this.match = this.$root.$options.vars.matches[this.id]
        }
+     },
+
+     removeClass () {
+       var elems = document.querySelectorAll('.match-result-list')
+
+       Array.prototype.map.call(elems, el => {
+         el.classList.remove('md-theme-default')
+       })
      }
 
    },
 
    mounted () {
+     this.$root.$options.onMatchDetail = true
      this.getMatch()
+   },
+
+   updated () {
+     this.removeClass()
    }
 
  }

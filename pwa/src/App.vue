@@ -5,8 +5,12 @@
     <md-app md-waterfall md-mode="fixed" style="height: 100vh;">
       <md-app-toolbar class="md-dense md-primary">
         <div class="md-toolbar-row">
-          <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
+          <md-button class="md-icon-button" v-if="!onMatchDetail" @click="menuVisible = !menuVisible">
             <md-icon>menu</md-icon>
+          </md-button>
+
+          <md-button class="md-icon-button" v-if="onMatchDetail" @click="$router.push('/matches');">
+            <md-icon>arrow_back</md-icon>
           </md-button>
 
           <span class="md-title">{{ title }}</span>
@@ -65,6 +69,7 @@
    data: function () {
      return {
        menuVisible: false,
+       onMatchDetail: false,
        title: ''
      }
    },
@@ -76,11 +81,17 @@
        }
 
        return true
+     },
+
+     returnToMatchList () {
+       this.$root.$options.showPredictionsList = false
+       this.$forceUpdate()
      }
    },
 
    updated () {
      this.title = this.$route.meta.title
+     this.onMatchDetail = this.$root.$options.onMatchDetail
    },
 
    mounted () {
@@ -117,5 +128,14 @@
  .md-app-content .md-card.prediction {
    margin: 0;
    overflow: visible;
+ }
+ .md-card.match-info {
+   margin:0;
+ }
+ .md-card.match-info .md-card-header {
+   padding:0;
+ }
+ .md-card.match-info .md-card-content {
+   padding:0;
  }
 </style>

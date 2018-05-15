@@ -17,7 +17,9 @@ new Vue({
   vars: {
     title: '',
     matches: null,
-    predictions: null
+    predictions: null,
+    onMatchDetail: false,
+    showPredictionsList: false
   },
   router,
   template: '<App/>',

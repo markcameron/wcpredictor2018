@@ -100,8 +100,8 @@
 
        let params = {
          grant_type: 'password',
-         client_id: 2,
-         client_secret: 'T9U3i0LfXQd0Tyq0WHwRoOOmqsUTRr1MjSBjbwX8',
+         client_id: 1,
+         client_secret: 'Qd9jzlPSlslDhFuc0cLhOXB2q9uaMmVg34znoUfh',
          username: this.form.email,
          password: this.form.password,
          scope: ''

@@ -2,9 +2,9 @@
 
   <div>
 
-    <md-list class="match-list" v-if="!show_predictions_list">
+    <md-list class="match-list">
 
-      <md-list-item v-for="match in this.matches" v-bind:key="match.id" @click="showMatchPredictions(match)">
+      <md-list-item v-for="match, index in this.matches" v-bind:key="match.id" @click="showMatchPredictions(index)">
         <md-icon :class="'flag-icon-' + match.home_team_code" class="flex-media-figure flag-icon"></md-icon>
         <div class="md-list-item-text">{{ match.home_team }}</div>
         <div v-if="!hasResult(match)" class="md-list-item-text text-uppercase text-center">
@@ -22,28 +22,6 @@
 
     </md-list>
 
-    <md-card class="md-primary">
-      <md-card-header>
-
-      </md-card-header>
-
-      <md-card-content>
-
-        <md-list class="match-list" v-if="show_predictions_list">
-
-          <md-list-item v-for="user in this.match.predictions" v-bind:key="match.id">
-            <md-avatar class="md-avatar-icon md-primary">
-              {{ user.initials }}
-            </md-avatar>
-            <span class="md-list-item-text">{{ user.name }}</span>
-            <span class="md-list-item-text">{{ user.score_home }} - {{ user.score_away }}</span>
-          </md-list-item>
-
-        </md-list>
-      </md-card-content>
-
-    </md-card>
-
   </div>
 
 </template>
@@ -54,7 +32,6 @@
  export default {
    data () {
      return {
-       show_predictions_list: false,
        matches: null,
        match: null
      }
@@ -99,14 +76,26 @@
      },
 
      showMatchPredictions (match) {
-       this.match = match
-       this.show_predictions_list = true
+       this.$router.push({name: 'match', params: {id: match}})
+     },
+
+     removeClass () {
+       var elems = document.querySelectorAll('.match-result-list')
+
+       Array.prototype.map.call(elems, el => {
+         el.classList.remove('md-theme-default')
+       })
      }
 
    },
 
    mounted () {
+     this.$root.$options.onMatchDetail = false
      this.getMatches()
+   },
+
+   updated () {
+     this.removeClass()
    }
 
  }
