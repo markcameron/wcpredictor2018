@@ -23,16 +23,6 @@
 
         <md-list>
 
-          <md-list-item @click="menuVisible = false; $router.push('/');">
-            <md-icon>home</md-icon>
-            <span class="md-list-item-text">Home</span>
-          </md-list-item>
-
-          <md-list-item @click="menuVisible = false; $router.push('/login');">
-              <md-icon>send</md-icon>
-              <span class="md-list-item-text">Login</span>
-          </md-list-item>
-
           <md-list-item @click="menuVisible = false; $router.push('/matches');">
             <md-icon>list</md-icon>
             <span class="md-list-item-text">Matches</span>
@@ -51,7 +41,7 @@
         </md-list>
       </md-app-drawer>
 
-      <md-app-content v-bind:class="{ 'md-primary': !userLoggedIn(), 'no-padding': userLoggedIn() }" class="md-layout md-alignment-center-center">
+      <md-app-content v-bind:class="{ 'md-primary md-layout md-alignment-center-center': !userLoggedIn(), 'no-padding': userLoggedIn() }" class="">
         <keep-alive include="predictions">
           <router-view></router-view>
         </keep-alive>

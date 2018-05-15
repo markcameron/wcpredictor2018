@@ -1,8 +1,8 @@
 <template>
 
-  <form novalidate class="md-layout" @submit.prevent="validateUser">
+  <form novalidate class="md-layout md-alignment-center-center" @submit.prevent="validateUser">
 
-    <md-card class="md-layout-item md-size-50 md-small-size-100">
+    <md-card class="md-layout-item md-size-30 md-small-size-100">
 
       <md-card-header class="md-primary">
         <div class="md-title">
@@ -14,7 +14,7 @@
 
       <md-card-content>
 
-        <div class="md-layout md-gutter">
+        <div class="md-layout">
 
           <md-field :class="getValidationClass('email')">
             <label for="email">Email</label>

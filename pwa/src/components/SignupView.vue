@@ -1,8 +1,8 @@
 <template>
 
-  <form novalidate class="md-layout" @submit.prevent="validateUser">
+  <form novalidate class="md-layout md-alignment-center-center" @submit.prevent="validateUser">
 
-    <md-card class="md-layout-item md-size-50 md-small-size-100">
+    <md-card class="md-layout-item md-size-30 md-small-size-100">
 
       <md-card-header class="md-primary">
         <div class="md-title">
@@ -14,7 +14,7 @@
 
       <md-card-content>
 
-        <div class="md-layout md-gutter">
+        <div class="md-layout">
 
           <md-field :class="getValidationClass('first_name')">
             <label for="first-name">First Name</label>
@@ -33,13 +33,20 @@
             <md-input type="email" name="email" id="email" autocomplete="email" v-model="form.email" :disabled="sending" />
             <span class="md-error" v-if="!$v.form.email.required">The email is required</span>
             <span class="md-error" v-else-if="!$v.form.email.email">Invalid email</span>
-            <span class="md-error" v-else-if="$v.form.email.server_error">{{ $v.form.email.server_error }}</span>
+            <span class="md-error" v-else-if="server_errors.email.state">{{ server_errors.email.message }}</span>
           </md-field>
 
           <md-field :class="getValidationClass('password')">
             <label for="password">Password</label>
             <md-input type="password" name="password" id="password" autocomplete="password" v-model="form.password" :disabled="sending" />
             <span class="md-error" v-if="!$v.form.password.required">The password is required</span>
+            <span class="md-error" v-else-if="server_errors.password.state">{{ server_errors.password.message }}</span>
+          </md-field>
+
+          <md-field :class="getValidationClass('password_confirmation')">
+            <label for="password-confirmation">Confirm Password</label>
+            <md-input type="password" name="password_confirmation" id="password-confirmation" autocomplete="password_confirmation" v-model="form.password_confirmation" :disabled="sending" />
+            <span class="md-error" v-if="!$v.form.password_confirmation.required">The password confirmation is required</span>
           </md-field>
 
         </div>
@@ -50,6 +57,7 @@
       <md-progress-bar md-mode="indeterminate" v-if="sending" />
 
       <md-card-actions>
+        <md-button class="md-default" @click="$router.push({name: 'login'})">Cancel</md-button>
         <md-button type="submit" class="md-primary" :disabled="sending">Create</md-button>
       </md-card-actions>
 
@@ -73,9 +81,20 @@
          first_name: null,
          last_name: null,
          email: null,
-         password: null
+         password: null,
+         password_confirmation: null
        },
-       sending: false
+       sending: false,
+       server_errors: {
+         email: {
+           state: false,
+           message: ''
+         },
+         password: {
+           state: false,
+           message: ''
+         }
+       }
      }
    },
 
@@ -93,6 +112,9 @@
        },
        password: {
          required: _validators.required
+       },
+       password_confirmation: {
+         required: _validators.required
        }
      }
    },
@@ -102,9 +124,14 @@
      getValidationClass (fieldName) {
        var field = this.$v.form[fieldName]
 
+       var serverValidation = false
+       if (this.server_errors[fieldName]) {
+         serverValidation = this.server_errors[fieldName].state
+       }
+
        if (field) {
          return {
-           'md-invalid': field.$invalid && field.$dirty
+           'md-invalid': (field.$invalid && field.$dirty) || serverValidation
          }
        }
      },
@@ -117,35 +144,70 @@
        }
      },
 
+     setupServerErrors () {
+       this.server_errors = {
+         email: {
+           state: false,
+           message: ''
+         },
+         password: {
+           state: false,
+           message: ''
+         }
+       }
+     },
+
      login () {
        this.sending = true
+       this.setupServerErrors()
 
        let params = {
          first_name: this.form.first_name,
          last_name: this.form.last_name,
          email: this.form.email,
-         password: this.form.password
+         password: this.form.password,
+         password_confirmation: this.form.password_confirmation
        }
 
        axios.post(this.$root.$options.api.url + 'api/register', params)
          .then((response) => {
-           console.log(response)
-           //           this.$root.$options.api.token = response.data.access_token
-           //           localStorage.setItem('token', response.data.access_token)
-           //           this.$router.push({name: 'matches'})
+           let params = {
+             grant_type: 'password',
+             client_id: 1,
+             client_secret: 'Qd9jzlPSlslDhFuc0cLhOXB2q9uaMmVg34znoUfh',
+             username: this.form.email,
+             password: this.form.password,
+             scope: ''
+           }
+
+           axios.post(this.$root.$options.api.url + 'oauth/token', params)
+             .then((response) => {
+               this.$root.$options.api.token = response.data.access_token
+               localStorage.setItem('token', response.data.access_token)
+               this.$router.push({name: 'matches'})
+             })
+             .catch((error) => {
+               this.sending = false
+               console.log(error)
+             })
          })
          .catch((error) => {
-           console.log('error register')
            this.sending = false
 
-           console.log(error.response.data.errors)
-
            if (error.response.data.errors.email) {
-             console.log('email error')
-             this.$v.form.email.server_error = error.response.data.errors.email.join(',')
-             console.log(this.$v.form.email.server_error)
+             this.server_errors.email.state = true
+             this.server_errors.email.message = error.response.data.errors.email.join(',')
+           }
+
+           if (error.response.data.errors.password) {
+             this.server_errors.password.state = true
+             this.server_errors.password.message = error.response.data.errors.password.join(',')
            }
          })
+     },
+
+     beforeUpdate () {
+       this.setupServerErrors()
      }
 
    }
