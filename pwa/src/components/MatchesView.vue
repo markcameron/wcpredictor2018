@@ -1,8 +1,8 @@
 <template>
 
-  <div>
+  <div class="md-layout md-alignment-top-center">
 
-    <md-list class="match-list">
+    <md-list class="match-list md-layout-item md-large-size-50 md-medium-size-100">
 
       <md-list-item v-for="match, index in this.matches" v-bind:key="match.id" @click="showMatchPredictions(index)">
         <md-icon :class="'flag-icon-' + match.home_team_code" class="flex-media-figure flag-icon"></md-icon>

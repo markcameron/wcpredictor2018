@@ -1,21 +1,25 @@
 <template>
 
-  <md-list class="match-list">
+  <div class="md-layout md-alignment-top-center">
 
-    <md-list-item v-for="(user, index) in this.leaderboard" v-bind:key="index">
-      <md-avatar class="md-avatar-icon md-primary">
-        {{ user.initials }}
-      </md-avatar>
-      <div class="md-list-item-text">
-        <span>{{ user.full_name }}</span>
-        <span>Hopp Schwiiz</span>
-      </div>
-      <div class="md-list-item-text text-right">
-        <span class="md-title">{{ user.score }}</span>
-      </div>
-    </md-list-item>
+    <md-list class="match-list md-layout-item md-large-size-33 md-medium-size-100">
 
-  </md-list>
+      <md-list-item v-for="(user, index) in this.leaderboard" v-bind:key="index">
+        <md-avatar class="md-avatar-icon md-primary">
+          {{ user.initials }}
+        </md-avatar>
+        <div class="md-list-item-text">
+          <span>{{ user.full_name }}</span>
+          <span>Hopp Schwiiz</span>
+        </div>
+        <div class="md-list-item-text text-right">
+          <span class="md-title">{{ user.score }}</span>
+        </div>
+      </md-list-item>
+
+    </md-list>
+
+  </div>
 
 </template>
 

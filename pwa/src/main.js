@@ -12,7 +12,7 @@ new Vue({
   el: '#app',
   api: {
     url: 'https://wc2018.local:8443/',
-    token: null
+    token: localStorage.getItem('token')
   },
   vars: {
     title: '',

@@ -2,8 +2,8 @@
 
   <div>
 
-    <md-card class="md-primary match-info" v-if="match">
-      <md-card-header>
+    <md-card class="md-primary match-info md-layout md-alignment-top-center" v-if="match">
+      <md-card-header class="md-layout-item md-large-size-33 md-medium-size-100">
 
         <md-list class="match-result-list md-theme-primary">
 
@@ -12,8 +12,8 @@
             <div class="md-list-item-text md-title">
               {{ match.home_team }}
             </div>
-            <div class="md-list-item-text md-title prediction-value text-center">
-              {{ match.score_home }}
+            <div class="md-list-item-text md-title prediction-value text-right">
+              <span class="md-title">{{ match.score_home }}</span>
             </div>
           </md-list-item>
 
@@ -22,16 +22,18 @@
             <span class="md-list-item-text md-title">
               {{ match.away_team }}
             </span>
-            <div class="md-list-item-text md-title prediction-value text-center">
-              {{ match.score_away }}
+            <div class="md-list-item-text md-title prediction-value text-right">
+              <span class="md-title">{{ match.score_away }}</span>
             </div>
           </md-list-item>
 
         </md-list>
 
       </md-card-header>
+    </md-card>
 
-      <md-card-content>
+    <md-card class="match-info md-layout md-alignment-top-center" v-if="match">
+      <md-card-content class="md-layout-item md-large-size-33 md-medium-size-100">
 
         <md-list class="match-list">
 

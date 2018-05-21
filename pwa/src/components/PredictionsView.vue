@@ -2,81 +2,89 @@
 
   <div>
 
-    <md-list class="match-list" v-if="!show_match_card">
+    <div class="md-layout md-alignment-top-center" v-if="!show_match_card">
 
-      <md-list-item v-for="(match, index) in this.predictions" v-bind:key="index" @click="predictMatch(match)">
-        <md-icon :class="'flag-icon-' + match.home_team_code" class="flex-media-figure flag-icon"></md-icon>
-        <div class="md-list-item-text">{{ match.home_team }}</div>
-        <div v-if="!canPredict(match)" class="md-list-item-text text-center">
-          <span class="md-title" v-if="hasPrediction(match)">{{ match.score_home }} - {{ match.score_away }}</span>
-          <span class="md-title" v-if="!hasPrediction(match)">¯\_(ツ)_/¯</span>
-        </div>
-        <div v-if="canPredict(match)" class="md-list-item-text text-center text-uppercase">
-          <span class="md-primary">ADD</span>
-        </div>
-        <div class="md-list-item-text text-right">
-          <span>{{ match.away_team }}</span>
-        </div>
-        <md-icon :class="'flag-icon-' + match.away_team_code" class="flex-media-figure flag-icon"></md-icon>
-      </md-list-item>
+      <md-list class="match-list md-layout-item md-large-size-50 md-medium-size-100">
 
-    </md-list>
+        <md-list-item v-for="(match, index) in this.predictions" v-bind:key="index" @click="predictMatch(match)">
+          <md-icon :class="'flag-icon-' + match.home_team_code" class="flex-media-figure flag-icon"></md-icon>
+          <div class="md-list-item-text">{{ match.home_team }}</div>
+          <div v-if="!canPredict(match)" class="md-list-item-text text-center">
+            <span class="md-title" v-if="hasPrediction(match)">{{ match.score_home }} - {{ match.score_away }}</span>
+            <span class="md-title" v-if="!hasPrediction(match)">¯\_(ツ)_/¯</span>
+          </div>
+          <div v-if="canPredict(match)" class="md-list-item-text text-center text-uppercase">
+            <span class="md-primary">ADD</span>
+          </div>
+          <div class="md-list-item-text text-right">
+            <span>{{ match.away_team }}</span>
+          </div>
+          <md-icon :class="'flag-icon-' + match.away_team_code" class="flex-media-figure flag-icon"></md-icon>
+        </md-list-item>
 
-    <md-card class="prediction" v-if="show_match_card">
+      </md-list>
 
-      <md-card-header class="md-primary">
-        <div class="md-title">
-          Enter your prediction for
-        </div>
-      </md-card-header>
+    </div>
 
-      <md-card-content>
-        <md-list class="match-list">
+    <div class="md-layout md-alignment-top-center" v-if="show_match_card">
 
-          <md-list-item>
-            <md-icon :class="'flag-icon-' + match.home_team_code" class="flex-media-figure flag-icon"></md-icon>
-            <div class="md-list-item-text md-title">
-              {{ match.home_team }}
-            </div>
-            <md-button class="md-icon-button" @click="decreaseScore('home')">
-              <md-icon>remove</md-icon>
-            </md-button>
-            <div class="md-list-item-text md-title prediction-value text-center">
-              {{ score_home }}
-            </div>
-            <md-button class="md-icon-button" @click="increaseScore('home')">
-              <md-icon>add</md-icon>
-            </md-button>
-          </md-list-item>
+      <md-card class="prediction md-layout-item md-large-size-33 md-medium-size-100">
 
-          <md-list-item>
-            <md-icon :class="'flag-icon-' + match.away_team_code" class="flex-media-figure flag-icon"></md-icon>
-            <span class="md-list-item-text md-title">
-              {{ match.away_team }}
-            </span>
-            <md-button class="md-icon-button" @click="decreaseScore('away')">
-              <md-icon>remove</md-icon>
-            </md-button>
-            <div class="md-list-item-text md-title prediction-value text-center">
-              {{ score_away }}
-            </div>
-            <md-button class="md-icon-button" @click="increaseScore('away')">
-              <md-icon>add</md-icon>
-            </md-button>
-          </md-list-item>
+        <md-card-header class="md-primary">
+          <div class="md-title">
+            Enter your prediction for
+          </div>
+        </md-card-header>
 
-        </md-list>
-      </md-card-content>
+        <md-card-content>
+          <md-list class="match-list">
 
-      <md-divider></md-divider>
-      <md-progress-bar md-mode="indeterminate" v-if="sending" />
+            <md-list-item>
+              <md-icon :class="'flag-icon-' + match.home_team_code" class="flex-media-figure flag-icon"></md-icon>
+              <div class="md-list-item-text md-title">
+                {{ match.home_team }}
+              </div>
+              <md-button class="md-icon-button" @click="decreaseScore('home')">
+                <md-icon>remove</md-icon>
+              </md-button>
+              <div class="md-list-item-text md-title prediction-value text-center">
+                {{ score_home }}
+              </div>
+              <md-button class="md-icon-button" @click="increaseScore('home')">
+                <md-icon>add</md-icon>
+              </md-button>
+            </md-list-item>
 
-      <md-card-actions>
-        <md-button @click="cancelScore" :disabled="sending">Cancel</md-button>
-        <md-button class="md-primary" @click="saveScore()" :disabled="sending">Save</md-button>
-      </md-card-actions>
+            <md-list-item>
+              <md-icon :class="'flag-icon-' + match.away_team_code" class="flex-media-figure flag-icon"></md-icon>
+              <span class="md-list-item-text md-title">
+                {{ match.away_team }}
+              </span>
+              <md-button class="md-icon-button" @click="decreaseScore('away')">
+                <md-icon>remove</md-icon>
+              </md-button>
+              <div class="md-list-item-text md-title prediction-value text-center">
+                {{ score_away }}
+              </div>
+              <md-button class="md-icon-button" @click="increaseScore('away')">
+                <md-icon>add</md-icon>
+              </md-button>
+            </md-list-item>
 
-    </md-card>
+          </md-list>
+        </md-card-content>
+
+        <md-divider></md-divider>
+        <md-progress-bar md-mode="indeterminate" v-if="sending" />
+
+        <md-card-actions>
+          <md-button @click="cancelScore" :disabled="sending">Cancel</md-button>
+          <md-button class="md-primary md-raised" @click="saveScore()" :disabled="sending">Save</md-button>
+        </md-card-actions>
+
+      </md-card>
+
+    </div>
 
   </div>
 
