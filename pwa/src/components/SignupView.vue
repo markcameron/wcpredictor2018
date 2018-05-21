@@ -29,16 +29,16 @@
           </md-field>
 
           <md-field :class="getValidationClass('email')">
-            <label for="email">Email</label>
-            <md-input type="email" name="email" id="email" autocomplete="email" v-model="form.email" :disabled="sending" />
+            <label for="signup-email">Email</label>
+            <md-input type="email" name="email" id="signup-email" autocomplete="email" v-model="form.email" :disabled="sending" />
             <span class="md-error" v-if="!$v.form.email.required">The email is required</span>
             <span class="md-error" v-else-if="!$v.form.email.email">Invalid email</span>
             <span class="md-error" v-else-if="server_errors.email.state">{{ server_errors.email.message }}</span>
           </md-field>
 
           <md-field :class="getValidationClass('password')">
-            <label for="password">Password</label>
-            <md-input type="password" name="password" id="password" autocomplete="password" v-model="form.password" :disabled="sending" />
+            <label for="signup-password">Password</label>
+            <md-input type="password" name="password" id="signup-password" autocomplete="password" v-model="form.password" :disabled="sending" />
             <span class="md-error" v-if="!$v.form.password.required">The password is required</span>
             <span class="md-error" v-else-if="server_errors.password.state">{{ server_errors.password.message }}</span>
           </md-field>
@@ -173,18 +173,22 @@
          .then((response) => {
            let params = {
              grant_type: 'password',
-             client_id: 1,
-             client_secret: 'Qd9jzlPSlslDhFuc0cLhOXB2q9uaMmVg34znoUfh',
              username: this.form.email,
              password: this.form.password,
              scope: ''
            }
 
-           axios.post(this.$root.$options.api.url + 'oauth/token', params)
+           axios.post(this.$root.$options.api.url + 'api/login', params)
              .then((response) => {
-               this.$root.$options.api.token = response.data.access_token
-               localStorage.setItem('token', response.data.access_token)
-               this.$router.push({name: 'matches'})
+               if (response.data.response.error) {
+                 this.login_error = true
+                 this.sending = false
+                 this.$router.push({name: 'login'})
+               } else if (response.data.response.access_token) {
+                 this.$root.$options.api.token = response.data.access_token
+                 localStorage.setItem('token', response.data.access_token)
+                 this.$router.push({name: 'matches'})
+               }
              })
              .catch((error) => {
                this.sending = false

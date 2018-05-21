@@ -120,8 +120,11 @@
  .text-center {
    text-align:center;
  }
- .text-right{
+ .text-right {
    text-align:right;
+ }
+ .text-error {
+   color:red;
  }
  .md-app-content.no-padding {
    padding: 0;

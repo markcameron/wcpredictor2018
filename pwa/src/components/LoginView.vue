@@ -17,7 +17,7 @@
           Login with Facebook
           <md-progress-spinner md-mode="indeterminate" :md-diameter="15" :md-stroke="2" v-if="sending_facebook"></md-progress-spinner>
         </md-button>
-        <md-text v-if="facebook_login_error">Error logging in with Facebook</md-text>
+        <span v-if="facebook_login_error" class="text-error">Error logging in with Facebook</span>
       </md-card-content>
 
       <md-divider></md-divider>
@@ -41,7 +41,7 @@
 
         </div>
 
-        <md-text v-if="login_error">Could not log you in with those credentials</md-text>
+        <span v-if="login_error" class="text-error">Could not log you in with those credentials</span>
       </md-card-content>
 
       <md-divider></md-divider>
