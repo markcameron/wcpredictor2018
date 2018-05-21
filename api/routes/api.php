@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => ['cors', 'guest:api']], function () {
+  Route::post('login', 'Auth\LoginController@apiLogin');
   Route::post('register', 'Auth\RegisterController@register');
 
   Route::post('auth/social/facebook', 'Api\SocialLoginController@loginFacebook');

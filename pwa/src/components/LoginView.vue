@@ -41,6 +41,7 @@
 
         </div>
 
+        <md-text v-if="login_error">Could not log you in with those credentials</md-text>
       </md-card-content>
 
       <md-divider></md-divider>
@@ -74,6 +75,7 @@
        sending: false,
        sending_facebook: false,
        facebook_login_error: false,
+       login_error: false,
        fbSignInParams: {
          scope: 'email,public_profile',
          return_scopes: true
@@ -115,21 +117,25 @@
 
      login () {
        this.sending = true
+       this.login_error = false
 
        let params = {
-         grant_type: 'password',
-         client_id: 1,
-         client_secret: 'Qd9jzlPSlslDhFuc0cLhOXB2q9uaMmVg34znoUfh',
          username: this.form.email,
          password: this.form.password,
          scope: ''
        }
 
-       axios.post(this.$root.$options.api.url + 'oauth/token', params)
+       axios.post(this.$root.$options.api.url + 'api/login', params)
          .then((response) => {
-           this.$root.$options.api.token = response.data.access_token
-           localStorage.setItem('token', response.data.access_token)
-           this.$router.push({name: 'matches'})
+           console.log(response)
+           if (response.data.response.error) {
+             this.login_error = true
+             this.sending = false
+           } elseif (response.data.response.access_token) {
+             this.$root.$options.api.token = response.data.access_token
+             localStorage.setItem('token', response.data.access_token)
+             this.$router.push({name: 'matches'})
+           }
          })
          .catch((error) => {
            this.sending = false
