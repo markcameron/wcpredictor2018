@@ -11,7 +11,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   api: {
-    url: 'http://wc2018.local/',
+    url: 'https://wc2018.local:8443/',
     token: null
   },
   vars: {

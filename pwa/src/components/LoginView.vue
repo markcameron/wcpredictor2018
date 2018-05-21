@@ -13,6 +13,16 @@
       <md-divider></md-divider>
 
       <md-card-content>
+        <md-button class="fb-signin-button" :disabled="sending" @click="loginFacebook">
+          Login with Facebook
+          <md-progress-spinner md-mode="indeterminate" :md-diameter="15" :md-stroke="2" v-if="sending_facebook"></md-progress-spinner>
+        </md-button>
+        <md-text v-if="facebook_login_error">Error logging in with Facebook</md-text>
+      </md-card-content>
+
+      <md-divider></md-divider>
+
+      <md-card-content>
 
         <div class="md-layout">
 
@@ -41,7 +51,7 @@
         <md-button type="submit" class="md-primary" :disabled="sending">Login</md-button>
       </md-card-actions>
 
-  </md-card>
+    </md-card>
 
   </form>
 
@@ -61,7 +71,13 @@
          email: null,
          password: null
        },
-       sending: false
+       sending: false,
+       sending_facebook: false,
+       facebook_login_error: false,
+       fbSignInParams: {
+         scope: 'email,public_profile',
+         return_scopes: true
+       }
      }
    },
 
@@ -119,9 +135,50 @@
            this.sending = false
            console.log(error)
          })
+     },
+
+     loginFacebook () {
+       this.sending = true
+       this.sending_facebook = true
+       this.facebook_login_error = false
+
+       window.FB.login((response) => {
+         console.log(response)
+         this.sending = false
+         this.sending_facebook = false
+         if (response.status === 'not_authorized') {
+           this.facebook_login_error = true
+         } else if (response.status === 'connected') {
+           axios.post(this.$root.$options.api.url + 'api/auth/social/facebook', response.authResponse)
+             .then((response) => {
+               this.$root.$options.api.token = response.data.original.response.access_token
+               localStorage.setItem('token', response.data.original.response.access_token)
+               this.$router.push({name: 'matches'})
+             })
+             .catch((error) => {
+               this.sending = false
+               this.facebook_login_error = true
+               console.log(error)
+             })
+         } else {
+           this.facebook_login_error = true
+         }
+       }, this.fbSignInParams)
      }
 
    }
 
  }
 </script>
+
+<style>
+ .md-button.fb-signin-button,
+ .md-button.fb-signin-button:disabled {
+   /* This is where you control how the button looks. Be creative! */
+   display: inline-block;
+   padding: 4px 8px;
+   border-radius: 3px;
+   background-color: #4267b2;
+   color: #fff;
+ }
+</style>
