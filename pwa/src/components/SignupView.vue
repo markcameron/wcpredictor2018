@@ -185,8 +185,8 @@
                  this.sending = false
                  this.$router.push({name: 'login'})
                } else if (response.data.response.access_token) {
-                 this.$root.$options.api.token = response.data.access_token
-                 localStorage.setItem('token', response.data.access_token)
+                 this.$root.$options.api.token = response.data.response.access_token
+                 localStorage.setItem('token', response.data.response.access_token)
                  this.$router.push({name: 'matches'})
                }
              })
