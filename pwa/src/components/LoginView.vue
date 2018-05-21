@@ -131,7 +131,7 @@
            if (response.data.response.error) {
              this.login_error = true
              this.sending = false
-           } elseif (response.data.response.access_token) {
+           } else if (response.data.response.access_token) {
              this.$root.$options.api.token = response.data.access_token
              localStorage.setItem('token', response.data.access_token)
              this.$router.push({name: 'matches'})
