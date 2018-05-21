@@ -11,7 +11,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   api: {
-    url: 'https://wc2018.local:8443/',
+    url: process.env.API_BASE_URL,
     token: localStorage.getItem('token')
   },
   vars: {
@@ -27,7 +27,6 @@ new Vue({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log('before each route')
   if (!to.meta.requires_auth) {
     next()
   } else if (!user.check()) {
