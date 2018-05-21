@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 use Laravel\Passport\Passport;
 use Laravel\Passport\Bridge\UserRepository;
 use Laravel\Passport\Bridge\RefreshTokenRepository;
@@ -17,6 +18,7 @@ class AppServiceProvider extends ServiceProvider {
    * @return void
    */
   public function boot() {
+    Schema::defaultStringLength(191);
     app(AuthorizationServer::class)->enableGrantType($this->makeSocialGrant(), Passport::tokensExpireIn());
   }
 
