@@ -36,6 +36,8 @@
    methods: {
 
      getLeaderboard () {
+       this.leaderboard = JSON.parse(localStorage.getItem('leaderboard'))
+
        if (navigator.onLine) {
          axios.get(this.$root.$options.api.url + 'api/leaderboard', {
            headers: {
@@ -44,15 +46,12 @@
            }
          })
            .then((response) => {
-             console.log(response.data)
              this.leaderboard = response.data
              localStorage.setItem('leaderboard', JSON.stringify(response.data))
            })
            .catch((error) => {
              console.log(error)
            })
-       } else {
-         this.matches = JSON.parse(localStorage.getItem('leaderboard'))
        }
      }
 

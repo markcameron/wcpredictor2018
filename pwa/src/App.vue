@@ -43,7 +43,9 @@
 
       <md-app-content v-bind:class="{ 'md-primary md-layout md-alignment-center-center': !userLoggedIn(), 'no-padding': userLoggedIn() }" class="">
         <keep-alive include="predictions">
-          <router-view></router-view>
+          <transition name="fade">
+            <router-view></router-view>
+          </transition>
         </keep-alive>
 
         <md-bottom-bar
@@ -57,7 +59,6 @@
           <md-bottom-bar-item to="/leaderboard" md-label="Leaderboard" md-icon="grade"></md-bottom-bar-item>
         </md-bottom-bar>
       </md-app-content>
-
 
     </md-app>
 
@@ -146,5 +147,16 @@
  }
  .md-card.match-info .md-card-content {
    padding:0;
+ }
+
+ .fade-enter-active, .fade-leave-active {
+   transition-property: opacity;
+   transition-duration: .25s;
+ }
+ .fade-enter-active {
+   transition-delay: .25s;
+ }
+ .fade-enter, .fade-leave-active {
+   opacity: 0
  }
 </style>

@@ -108,6 +108,8 @@
    methods: {
 
      getPredictions () {
+       this.predictions = JSON.parse(localStorage.getItem('predictions'))
+
        if (navigator.onLine) {
          axios.get(this.$root.$options.api.url + 'api/predictions/list', {
            headers: {
@@ -123,8 +125,6 @@
            .catch((error) => {
              console.log(error)
            })
-       } else {
-         return JSON.parse(localStorage.getItem('predictions'))
        }
      },
 
@@ -209,7 +209,6 @@
    },
 
    mounted () {
-     console.log(this.predictions)
      if (this.predictions === null) {
        this.getPredictions()
      }

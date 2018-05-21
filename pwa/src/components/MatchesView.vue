@@ -40,6 +40,8 @@
    methods: {
 
      getMatches () {
+       this.matches = JSON.parse(localStorage.getItem('matches'))
+
        if (navigator.onLine) {
          axios.get(this.$root.$options.api.url + 'api/matches/list', {
            headers: {
@@ -48,7 +50,6 @@
            }
          })
            .then((response) => {
-             console.log(response.data)
              this.matches = response.data
              this.$root.$options.vars.matches = response.data
              localStorage.setItem('matches', JSON.stringify(response.data))
@@ -56,8 +57,6 @@
            .catch((error) => {
              console.log(error)
            })
-       } else {
-         this.matches = JSON.parse(localStorage.getItem('matches'))
        }
      },
 
