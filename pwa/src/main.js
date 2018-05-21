@@ -12,7 +12,7 @@ new Vue({
   el: '#app',
   api: {
     url: process.env.API_BASE_URL,
-    token: null, //localStorage.getItem('token')
+    token: localStorage.getItem('token')
   },
   vars: {
     title: '',
