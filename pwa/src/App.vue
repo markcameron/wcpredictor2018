@@ -23,17 +23,17 @@
 
         <md-list>
 
-          <md-list-item @click="menuVisible = false; $router.push('/matches');">
+          <md-list-item to="/matches" @click="menuVisible = false;">
             <md-icon>list</md-icon>
             <span class="md-list-item-text">Matches</span>
           </md-list-item>
 
-          <md-list-item @click="menuVisible = false; $router.push('/predictions');">
+          <md-list-item to="/predictions" @click="menuVisible = false;">
             <md-icon>assignment</md-icon>
             <span class="md-list-item-text">Predictions</span>
           </md-list-item>
 
-          <md-list-item @click="menuVisible = false; $router.push('/leaderboard');">
+          <md-list-item to="/leaderboard" @click="menuVisible = false;">
             <md-icon>grade</md-icon>
             <span class="md-list-item-text">Leaderboard</span>
           </md-list-item>
@@ -45,7 +45,19 @@
         <keep-alive include="predictions">
           <router-view></router-view>
         </keep-alive>
+
+        <md-bottom-bar
+            slot="md-app-drawer"
+            class="md-primary"
+            style="position:fixed;bottom:0;z-index:100;"
+            md-sync-route
+        >
+          <md-bottom-bar-item to="/matches" md-label="Matches" md-icon="list"></md-bottom-bar-item>
+          <md-bottom-bar-item to="/predictions" md-label="Predictions" md-icon="assignment"></md-bottom-bar-item>
+          <md-bottom-bar-item to="/leaderboard" md-label="Leaderboard" md-icon="grade"></md-bottom-bar-item>
+        </md-bottom-bar>
       </md-app-content>
+
 
     </md-app>
 
@@ -67,13 +79,10 @@
 
    methods: {
      userLoggedIn () {
-       console.log('checklogin')
        if (this.$root.$options.api.token === null) {
-         console.log('false')
          return false
        }
 
-       console.log('true')
        return true
      },
 
