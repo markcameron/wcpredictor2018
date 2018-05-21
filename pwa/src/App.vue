@@ -84,6 +84,10 @@
          return false
        }
 
+       if (this.$root.$options.api.token === 'undefined') {
+         return false
+       }
+
        return true
      },
 
