@@ -149,7 +149,6 @@
        this.facebook_login_error = false
 
        window.FB.login((response) => {
-         console.log(response)
          this.sending = false
          this.sending_facebook = false
          if (response.status === 'not_authorized') {
