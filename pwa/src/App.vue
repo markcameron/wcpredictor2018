@@ -161,7 +161,7 @@
    transition-duration: .25s;
  }
  .fade-enter-active {
-   transition-delay: .25s;
+   transition-delay: 0;
  }
  .fade-enter, .fade-leave-active {
    opacity: 0
