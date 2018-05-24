@@ -56,10 +56,10 @@ class SocialLoginController extends Controller {
      */
     $params = [
       'grant_type' => 'social',
-      'client_id' => '1', // it should be password grant client
-      'client_secret' => 'Qd9jzlPSlslDhFuc0cLhOXB2q9uaMmVg34znoUfh',
-      'accessToken' => $accessToken, // access token from provider
-      'provider' => $provider, // i.e. facebook
+      'client_id' => env('PASSPORT_CLIENT_ID'),
+      'client_secret' => env('PASSPORT_CLIENT_SECRET'),
+      'accessToken' => $accessToken,
+      'provider' => $provider,
     ];
     $request->request->add($params);
 
