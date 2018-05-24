@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration {
       $table->string('first_name');
       $table->string('email')->unique();
       $table->integer('active')->default(0);
-      $table->string('password');
+      $table->string('password')->nullable()->default(NULL);
       $table->string('activation_code')->nullable()->default(NULL);
       $table->rememberToken();
     });
