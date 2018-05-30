@@ -10,7 +10,7 @@
             <md-icon>menu</md-icon>
           </md-button>
 
-          <md-button class="md-icon-button" v-if="onMatchDetail" @click="$router.push('/matches');">
+          <md-button class="md-icon-button" v-if="onMatchDetail" @click="$router.push('/');">
             <md-icon>arrow_back</md-icon>
           </md-button>
 
