@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-
+    hello
   </div>
 </template>
 
@@ -11,6 +11,18 @@
      return {
        msg: 'Welcome to Your Vue.js PWA'
      }
+   },
+
+   methods: {
+
+     updated () {
+       console.log('updated')
+     },
+
+     mounted () {
+       console.log('mounted')
+     }
+
    }
  }
 </script>

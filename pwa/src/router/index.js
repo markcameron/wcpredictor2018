@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
 import 'vue-material/dist/theme/default.css'
-import HelloView from '@/components/Hello'
 import LoginView from '@/components/LoginView'
 import SignupView from '@/components/SignupView'
 import MatchView from '@/components/MatchView'
@@ -30,11 +29,6 @@ Vue.filter('formatTime', function (value) {
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: HelloView
-    },
-    {
       path: '/login',
       name: 'login',
       component: LoginView,
@@ -51,7 +45,7 @@ export default new Router({
       }
     },
     {
-      path: '/matches',
+      path: '/',
       name: 'matches',
       component: MatchesView,
       meta: {

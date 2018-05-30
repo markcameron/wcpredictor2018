@@ -23,7 +23,7 @@
 
         <md-list>
 
-          <md-list-item to="/matches" @click="menuVisible = false;">
+          <md-list-item to="/" @click="menuVisible = false;">
             <md-icon>list</md-icon>
             <span class="md-list-item-text">Matches</span>
           </md-list-item>
@@ -55,7 +55,7 @@
             md-sync-route
             v-if="userLoggedIn()"
         >
-          <md-bottom-bar-item to="/matches" md-label="Matches" md-icon="list"></md-bottom-bar-item>
+          <md-bottom-bar-item to="/" md-label="Matches" md-icon="list"></md-bottom-bar-item>
           <md-bottom-bar-item to="/predictions" md-label="Predictions" md-icon="assignment"></md-bottom-bar-item>
           <md-bottom-bar-item to="/leaderboard" md-label="Leaderboard" md-icon="grade"></md-bottom-bar-item>
         </md-bottom-bar>
