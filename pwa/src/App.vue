@@ -53,6 +53,7 @@
             class="md-primary"
             style="position:fixed;bottom:0;z-index:100;"
             md-sync-route
+            v-if="userLoggedIn()"
         >
           <md-bottom-bar-item to="/matches" md-label="Matches" md-icon="list"></md-bottom-bar-item>
           <md-bottom-bar-item to="/predictions" md-label="Predictions" md-icon="assignment"></md-bottom-bar-item>
