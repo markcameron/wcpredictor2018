@@ -10,7 +10,7 @@
         </md-avatar>
         <div class="md-list-item-text">
           <span>{{ user.full_name }}</span>
-          <span>Hopp Schwiiz</span>
+          <span></span>
         </div>
         <div class="md-list-item-text text-right">
           <span class="md-title">{{ user.score }}</span>
