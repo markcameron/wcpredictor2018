@@ -147,7 +147,7 @@
  .md-app-content .md-card {
    margin-right: 0px;
  }
- .md-card.match-info {
+ .md-app-content .md-card.match-info {
    margin:0;
  }
  .md-card.match-info .md-card-header {
