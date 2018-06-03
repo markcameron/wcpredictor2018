@@ -24,6 +24,8 @@ class User extends Authenticatable implements UserSocialAccount {
     'password',
     'provider',
     'provider_user_id',
+    'nickname',
+    'catchphrase',
   ];
 
   /**

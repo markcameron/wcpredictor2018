@@ -8,11 +8,16 @@
         <md-avatar class="md-avatar-icon md-primary">
           {{ user.initials }}
         </md-avatar>
-        <div class="md-list-item-text">
-          <span>{{ user.full_name }}</span>
-          <span></span>
+        <div class="md-list-item-text counter">
+          {{ index + 1 }}.
         </div>
-        <div class="md-list-item-text text-right">
+        <div class="md-list-item-text md-layout-item md-size-60">
+          <span v-if="user.nickname"><b>{{ user.nickname }}</b></span>
+          <span v-if="!user.nickname"><b>{{ user.full_name }}</b></span>
+          <span>{{ user.catchphrase }}</span>
+          <span v-if="user.nickname">{{ user.full_name }}</span>
+        </div>
+        <div class="md-list-item-text text-right md-layout-item md-size-10">
           <span class="md-title">{{ user.score }}</span>
         </div>
       </md-list-item>
@@ -63,3 +68,10 @@
 
  }
 </script>
+
+<style>
+ .counter {
+   min-width:35px;
+   max-width:35px;
+ }
+</style>

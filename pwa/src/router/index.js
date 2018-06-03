@@ -9,6 +9,7 @@ import MatchView from '@/components/MatchView'
 import MatchesView from '@/components/MatchesView'
 import PredictionsView from '@/components/PredictionsView'
 import LeaderboardView from '@/components/LeaderboardView'
+import SettingsView from '@/components/SettingsView'
 import moment from 'moment'
 
 Vue.use(Router)
@@ -78,6 +79,15 @@ export default new Router({
       component: LeaderboardView,
       meta: {
         title: 'Leaderboard',
+        requires_auth: true
+      }
+    },
+    {
+      path: '/settings',
+      name: 'settings',
+      component: SettingsView,
+      meta: {
+        title: 'settings',
         requires_auth: true
       }
     }

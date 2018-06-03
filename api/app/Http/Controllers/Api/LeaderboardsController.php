@@ -33,6 +33,8 @@ class LeaderboardsController extends Controller {
           [
             'full_name' => $user->full_name,
             'initials' => $user->initials,
+            'catchphrase' => $user->catchphrase,
+            'nickname' => $user->nickname,
           ], $this->score);
       }
     );
