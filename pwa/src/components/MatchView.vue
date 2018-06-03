@@ -33,7 +33,7 @@
     </md-card>
 
     <md-card class="match-info md-layout md-alignment-top-center" v-if="match">
-      <md-card-content class="md-layout-item md-xlarge-size-33 md-large-size-33 md-medium-size-100">
+      <md-card-content class="md-layout-item md-xlarge-size-33 md-large-size-33 md-medium-size-100" v-if="!match.can_predict">
 
         <md-list class="match-list">
 
