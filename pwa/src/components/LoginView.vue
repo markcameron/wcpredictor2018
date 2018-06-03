@@ -170,7 +170,7 @@
                this.sending_facebook = false
                this.$root.$options.api.token = response.data.original.response.access_token
                localStorage.setItem('token', response.data.original.response.access_token)
-               this.$router.push({name: 'matches'})
+               window.location.href = this.$root.$options.base_url
              })
              .catch((error) => {
                this.sending = false
