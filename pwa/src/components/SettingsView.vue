@@ -37,7 +37,7 @@
  import axios from 'axios'
 
  var _vuelidate = require('vuelidate')
- var _validators = require('vuelidate/lib/validators')
+ // var _validators = require('vuelidate/lib/validators')
 
  export default {
    mixins: [_vuelidate.validationMixin],
@@ -54,10 +54,8 @@
    validations: {
      form: {
        catchphrase: {
-         required: _validators.required
        },
        nickname: {
-         required: _validators.required
        }
      }
    },
