@@ -1,24 +1,27 @@
 <template>
 
-  <form novalidate class="md-layout md-alignment-center-center" @submit.prevent="validateUser">
+  <div class="md-layout md-alignment-center-center">
 
-    <md-card class="md-layout-item md-size-30 md-small-size-100">
+  <form novalidate @submit.prevent="validateUser">
 
-      <md-card-header class="md-primary">
-        <div class="md-title">
+    <div class="md-layout-item">
+
+      <div>
+        <div class="media md-layout-item md-xlarge-size-33 md-large-size-33 md-small-size-33">
+          <img src="/static/img/icons/android-chrome-512x512.png" alt="World Cup 2018 Predictor">
+        </div>
+        <div class="md-title text-center app-title">
           World Cup 2018 Predictor
         </div>
-      </md-card-header>
+      </div>
 
-      <md-divider></md-divider>
-
-      <md-card-content>
+      <div class="facebook-button text-center">
         <md-button class="fb-signin-button" :disabled="sending" @click="loginFacebook">
           Login with Facebook
           <md-progress-spinner md-mode="indeterminate" :md-diameter="15" :md-stroke="2" v-if="sending_facebook"></md-progress-spinner>
         </md-button>
         <span v-if="facebook_login_error" class="text-error">Error logging in with Facebook</span>
-      </md-card-content>
+      </div>
 
       <md-divider></md-divider>
 
@@ -52,9 +55,11 @@
         <md-button type="submit" class="md-primary" :disabled="sending">Login</md-button>
       </md-card-actions>
 
-    </md-card>
+    </div>
 
   </form>
+
+  </div>
 
 </template>
 
@@ -185,5 +190,16 @@
    border-radius: 3px;
    background-color: #4267b2;
    color: #fff;
+ }
+
+ .media {
+   margin: 0 auto 2vh;
+ }
+ .media img {
+   border-radius:50%;
+ }
+ .app-title,
+ .facebook-button {
+   margin-bottom:2vh;
  }
 </style>

@@ -2,7 +2,13 @@
 
   <form novalidate class="md-layout md-alignment-center-center" @submit.prevent="validateUser">
 
-    <md-card class="md-layout-item md-size-30 md-small-size-100">
+    <div class="md-layout-item md-size-30 md-small-size-100">
+
+      <div>
+        <div class="media md-layout-item md-xlarge-size-20 md-large-size-20 md-small-size-20">
+          <img src="/static/img/icons/android-chrome-512x512.png" alt="World Cup 2018 Predictor">
+        </div>
+      </div>
 
       <md-card-header class="md-primary">
         <div class="md-title">
@@ -61,7 +67,7 @@
         <md-button type="submit" class="md-primary" :disabled="sending">Create</md-button>
       </md-card-actions>
 
-    </md-card>
+    </div>
 
   </form>
 
