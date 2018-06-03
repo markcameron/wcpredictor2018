@@ -38,11 +38,6 @@
             <span class="md-list-item-text">Leaderboard</span>
           </md-list-item>
 
-          <md-list-item @click="logout()">
-            <md-icon>exit_to_app</md-icon>
-            <span class="md-list-item-text">Logout</span>
-          </md-list-item>
-
         </md-list>
       </md-app-drawer>
 
@@ -104,8 +99,18 @@
 
      logout () {
        this.menuVisible = false
-       localStorage.removeItem('token')
+
+       window.FB.getLoginStatus((response) => {
+         if (response && response.status === 'connected') {
+           window.FB.logout((response) => {
+
+           })
+         }
+       })
+
        this.$root.$options.api.token = null
+       localStorage.removeItem('token')
+
        this.$router.push({name: 'login'})
      }
    },
