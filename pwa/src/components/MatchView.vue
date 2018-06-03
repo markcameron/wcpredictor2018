@@ -3,7 +3,7 @@
   <div>
 
     <md-card class="md-primary match-info md-layout md-alignment-top-center" v-if="match">
-      <md-card-header class="md-layout-item md-large-size-33 md-medium-size-100">
+      <md-card-header class="md-layout-item md-xlarge-size-33 md-large-size-33 md-medium-size-100">
 
         <md-list class="match-result-list md-theme-primary">
 
@@ -33,7 +33,7 @@
     </md-card>
 
     <md-card class="match-info md-layout md-alignment-top-center" v-if="match">
-      <md-card-content class="md-layout-item md-large-size-33 md-medium-size-100">
+      <md-card-content class="md-layout-item md-xlarge-size-33 md-large-size-33 md-medium-size-100">
 
         <md-list class="match-list">
 

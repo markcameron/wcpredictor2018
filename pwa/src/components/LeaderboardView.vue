@@ -2,7 +2,7 @@
 
   <div class="md-layout md-alignment-top-center">
 
-    <md-list class="match-list md-layout-item md-large-size-33 md-medium-size-100">
+    <md-list class="match-list md-layout-item md-xlarge-size-33 md-large-size-33 md-medium-size-100">
 
       <md-list-item v-for="(user, index) in this.leaderboard" v-bind:key="index">
         <md-avatar class="md-avatar-icon md-primary">

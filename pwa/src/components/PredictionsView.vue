@@ -4,7 +4,7 @@
 
     <div class="md-layout md-alignment-top-center" v-if="!show_match_card">
 
-      <md-list class="match-list md-layout-item md-large-size-50 md-medium-size-100">
+      <md-list class="match-list md-layout-item md-xlarge-size-33 md-large-size-50 md-medium-size-100">
 
         <md-list-item v-for="(match, index) in this.predictions" v-bind:key="index" @click="predictMatch(match)">
           <md-icon :class="'flag-icon-' + match.home_team_code" class="flex-media-figure flag-icon"></md-icon>
@@ -28,7 +28,7 @@
 
     <div class="md-layout md-alignment-top-center" v-if="show_match_card">
 
-      <md-card class="prediction md-layout-item md-large-size-33 md-medium-size-100">
+      <md-card class="prediction md-layout-item md-xlarge-size-33 md-large-size-33 md-medium-size-100">
 
         <md-card-header class="md-primary">
           <div class="md-title">
