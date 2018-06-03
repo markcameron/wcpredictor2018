@@ -17,6 +17,7 @@
 
       <div class="facebook-button text-center">
         <md-button class="fb-signin-button" :disabled="sending" @click="loginFacebook">
+          <img src="/static/img/icons/facebookicon.png" class="fb-icon">
           Login with Facebook
           <md-progress-spinner md-mode="indeterminate" :md-diameter="15" :md-stroke="2" v-if="sending_facebook"></md-progress-spinner>
         </md-button>
@@ -188,7 +189,7 @@
    display: inline-block;
    padding: 4px 8px;
    border-radius: 3px;
-   background-color: #4267b2;
+   background-color: #3C5A99;
    color: #fff;
  }
 
@@ -201,5 +202,12 @@
  .app-title,
  .facebook-button {
    margin-bottom:2vh;
+ }
+
+ img.fb-icon {
+   width:20px;
+   height:20px;
+   margin-right:10px;
+   margin-left:-8px;
  }
 </style>

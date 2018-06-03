@@ -38,6 +38,11 @@
             <span class="md-list-item-text">Leaderboard</span>
           </md-list-item>
 
+          <md-list-item @click="logout()">
+            <md-icon>exit_to_app</md-icon>
+            <span class="md-list-item-text">Logout</span>
+          </md-list-item>
+
         </md-list>
       </md-app-drawer>
 
@@ -95,6 +100,13 @@
      returnToMatchList () {
        this.$root.$options.showPredictionsList = false
        this.$forceUpdate()
+     },
+
+     logout () {
+       this.menuVisible = false
+       localStorage.removeItem('token')
+       this.$root.$options.api.token = null
+       this.$router.push({name: 'login'})
      }
    },
 
