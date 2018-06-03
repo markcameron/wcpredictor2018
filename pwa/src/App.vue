@@ -47,7 +47,11 @@
       </md-app-drawer>
 
       <md-app-content v-bind:class="{ 'md-layout md-alignment-center-center': !userLoggedIn(), 'no-padding': userLoggedIn() }" class="">
-        <router-view></router-view>
+        <keep-alive include="predictions">
+          <transition name="fade">
+            <router-view></router-view>
+          </transition>
+        </keep-alive>
 
         <md-bottom-bar
             slot="md-app-drawer"
