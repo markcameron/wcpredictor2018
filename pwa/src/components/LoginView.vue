@@ -155,23 +155,28 @@
        this.facebook_login_error = false
 
        window.FB.login((response) => {
-         this.sending = false
-         this.sending_facebook = false
          if (response.status === 'not_authorized') {
+           this.sending = false
+           this.sending_facebook = false
            this.facebook_login_error = true
          } else if (response.status === 'connected') {
            axios.post(this.$root.$options.api.url + 'api/auth/social/facebook', response.authResponse)
              .then((response) => {
+               this.sending = false
+               this.sending_facebook = false
                this.$root.$options.api.token = response.data.original.response.access_token
                localStorage.setItem('token', response.data.original.response.access_token)
                this.$router.push({name: 'matches'})
              })
              .catch((error) => {
                this.sending = false
+               this.sending_facebook = false
                this.facebook_login_error = true
                console.log(error)
              })
          } else {
+           this.sending = false
+           this.sending_facebook = false
            this.facebook_login_error = true
          }
        }, this.fbSignInParams)
