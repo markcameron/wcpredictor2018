@@ -10,6 +10,7 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  base_url: process.env.BASE_URL,
   api: {
     url: process.env.API_BASE_URL,
     token: localStorage.getItem('token')

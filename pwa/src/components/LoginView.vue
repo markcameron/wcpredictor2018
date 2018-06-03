@@ -153,7 +153,7 @@
        this.sending_facebook = true
        this.facebook_login_error = false
 
-       window.location.href = 'https://www.facebook.com/v3.0/dialog/oauth?client_id=435591950234763&redirect_uri=https://localhost:8088/%23/login&state={"{st=statepwawc2018,ds=201819840301}"}'
+       window.location.href = 'https://www.facebook.com/v3.0/dialog/oauth?client_id=435591950234763&redirect_uri=' + this.$root.$options.base_url + '%23/login&state={"{st=statepwawc2018,ds=201819840301}"}'
      },
 
      checkFacebookLogin () {
