@@ -119,6 +119,11 @@
      if (!this.userLoggedIn()) {
        this.$router.push({name: 'login'})
      }
+
+     if (this.userLoggedIn() && this.$router.currentRoute.name === 'login') {
+       this.$router.push({name: 'matches'})
+     }
+
      this.title = this.$route.meta.title
    }
  }

@@ -29,6 +29,8 @@ new Vue({
 router.beforeEach((to, from, next) => {
   if (to.name === 'home') {
     next('/')
+  } else if (to.name === 'login' && user.check()) {
+    next('/')
   } else if (!to.meta.requires_auth) {
     next()
   } else if (!user.check()) {
