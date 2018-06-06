@@ -47,11 +47,13 @@
       </md-app-drawer>
 
       <md-app-content v-bind:class="{ 'md-layout md-alignment-center-center': !userLoggedIn(), 'no-padding': userLoggedIn() }" class="">
-        <keep-alive include="predictions">
-          <transition name="fade">
-            <router-view></router-view>
-          </transition>
-        </keep-alive>
+        <div class="outer-container">
+          <keep-alive include="predictions">
+            <transition name="fade">
+              <router-view></router-view>
+            </transition>
+          </keep-alive>
+        </div>
 
         <md-bottom-bar
             slot="md-app-drawer"
@@ -193,5 +195,8 @@
  }
  .fade-enter, .fade-leave-active {
    opacity: 0
+ }
+ .outer-container {
+   padding-bottom:50px;
  }
 </style>
