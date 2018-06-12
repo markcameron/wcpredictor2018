@@ -29,4 +29,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     'only' => ['create', 'store', 'edit', 'update']
   ]);
 
+  Route::resource('users', 'Admin\UsersController', [
+    'only' => ['index']
+  ]);
+
 });
