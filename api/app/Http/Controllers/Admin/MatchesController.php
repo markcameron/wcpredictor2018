@@ -25,7 +25,7 @@ class MatchesController extends AuthenticatedController {
    * @return json
    */
   public function index() {
-    $matches = Match::orderBy('id', 'DESC')->get();
+    $matches = Match::orderBy('id', 'ASC')->get();
 
     $matches = $matches->map(
       function($match) {
