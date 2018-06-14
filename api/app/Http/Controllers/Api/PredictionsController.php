@@ -46,7 +46,6 @@ class PredictionsController extends Controller {
                             ->whereUserId($this->user->id)
                             ->first();
 
-
     if (!$this->user->can_predict) {
       return Response::json(['No longer permitted to submit predictions'], 403);
     }

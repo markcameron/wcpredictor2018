@@ -74,101 +74,23 @@ class LeaderboardsController extends Controller {
    * The points that the users gets for the match
    */
   protected function getMatchPoints($prediction) {
-    if ($this->predictedCorrectScore($prediction)) {
+    if (predictedCorrectScore($prediction)) {
       $this->score['exact_score']++;
       $this->score['score'] += self::POINTS_CORRECT_SCORE;
       return;
     }
 
-    if ($this->predictedCorrectDifference($prediction)) {
+    if (predictedCorrectDifference($prediction)) {
       $this->score['correct_goal_difference']++;
       $this->score['score'] += self::POINTS_CORRECT_DIFFERENCE;
       return;
     }
 
-    if ($this->predictedCorrectWinner($prediction)) {
+    if (predictedCorrectWinner($prediction)) {
       $this->score['correct_winner']++;
       $this->score['score'] += self::POINTS_CORRECT_WINNER;
       return;
     }
-  }
-
-  /**
-   * Check if the user predicted the correct score of the game
-   *
-   * @param Prediction $prediction
-   * The prediction Eloquent object
-   *
-   * @return bool
-   * TRUE if prediction is correct, otherwise FALSE
-   */
-  protected function predictedCorrectScore($prediction) {
-//    print_r($prediction->score_home .":". $prediction->match->score_home ." | ". $prediction->score_away .":". $prediction->match->score_away);
-
-    if ($prediction->score_home === $prediction->match->score_home
-        && $prediction->score_away === $prediction->match->score_away) {
-//      print_r(" - 5\n");
-      return TRUE;
-    }
-
-//    print_r("\n");
-    return FALSE;
-  }
-
-  /**
-   * Check if the user predicted the correct goal difference of the game
-   *
-   * @param Prediction $prediction
-   * The prediction Eloquent object
-   *
-   * @return bool
-   * TRUE if prediction is correct, otherwise FALSE
-   */
-  protected function predictedCorrectDifference($prediction) {
-    if (is_null($prediction->match->score_home) && is_null($prediction->match->score_away)) {
-      return FALSE;
-    }
-
-    $predicted_difference = $prediction->score_home - $prediction->score_away;
-    $match_difference = $prediction->match->score_home - $prediction->match->score_away;
-
-//    print_r($predicted_difference ." | ". $match_difference);
-
-    if ($predicted_difference == $match_difference) {
-//      print_r(" - 3\n");
-      return TRUE;
-    }
-
-//    print_r("\n");
-    return FALSE;
-  }
-
-  /**
-   * Check if the user predicted the correct winner of the game
-   *
-   * @param Prediction $prediction
-   * The prediction Eloquent object
-   *
-   * @return bool
-   * TRUE if prediction is correct, otherwise FALSE
-   */
-  protected function predictedCorrectWinner($prediction) {
-    if (is_null($prediction->match->score_home) && is_null($prediction->match->score_away)) {
-      return FALSE;
-    }
-
-    $predicted_difference = $prediction->score_home - $prediction->score_away;
-    $match_difference = $prediction->match->score_home - $prediction->match->score_away;
-
-//    print_r($predicted_difference ." | ". $match_difference);
-
-    if ($predicted_difference < 0 && $match_difference < 0 || $predicted_difference > 0 && $match_difference > 0) {
-//      print_r(" - 1\n");
-      return TRUE;
-    }
-
-//    print_r("\n");
-    return FALSE;
   }
 
 }

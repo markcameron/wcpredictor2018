@@ -24,6 +24,11 @@
 
       </md-list>
 
+      <md-snackbar :md-position="position" :md-duration="isInfinity ? Infinity : duration" :md-active.sync="showSnackbar" md-persistent>
+        <span>You can no longer predict scores for this match</span>
+        <md-button class="md-primary" @click="showSnackbar = false">Close</md-button>
+      </md-snackbar>
+
     </div>
 
     <div class="md-layout md-alignment-top-center" v-if="show_match_card">
@@ -101,7 +106,11 @@
        sending: false,
        match: false,
        score_home: null,
-       score_away: null
+       score_away: null,
+       showSnackbar: false,
+       position: 'center',
+       duration: 4000,
+       isInfinity: false
      }
    },
 
@@ -151,10 +160,14 @@
      },
 
      predictMatch (match) {
-       this.match = match
-       this.show_match_card = true
-       this.score_home = match.score_home || 0
-       this.score_away = match.score_away || 0
+       if (match.can_predict) {
+         this.match = match
+         this.show_match_card = true
+         this.score_home = match.score_home || 0
+         this.score_away = match.score_away || 0
+       } else {
+         this.showSnackbar = true
+       }
      },
 
      increaseScore (type) {

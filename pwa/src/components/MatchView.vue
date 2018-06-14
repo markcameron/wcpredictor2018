@@ -45,6 +45,12 @@
             <div class="md-list-item-text text-right">
               <span class="md-title">{{ user.score_home }} - {{ user.score_away }}</span>
             </div>
+            <div v-if="match.has_score" class="user-status">
+              <md-icon class="exact-score" v-if="user.status === 'exact_score'">sentiment_very_satisfied</md-icon>
+              <md-icon class="goal-difference" v-if="user.status === 'goal_difference'">sentiment_satisfied_alt</md-icon>
+              <md-icon class="winner" v-if="user.status === 'winner'">sentiment_satisfied</md-icon>
+              <md-icon class="loser" v-if="user.status === 'loser'">sentiment_very_dissatisfied</md-icon>
+            </div>
           </md-list-item>
 
         </md-list>
@@ -100,3 +106,22 @@
 
  }
 </script>
+
+<style>
+
+ i.md-icon.md-theme-default.md-icon-font.exact-score {
+   color:#24c280;
+ }
+ i.md-icon.md-theme-default.md-icon-font.goal-difference {
+   color:#12afcb;
+ }
+ i.md-icon.md-theme-default.md-icon-font.winner {
+ }
+ i.md-icon.md-theme-default.md-icon-font.loser {
+   color:#f25656;
+ }
+ .user-status .md-icon {
+   margin-left:10px;
+ }
+
+</style>

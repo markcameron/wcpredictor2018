@@ -63,6 +63,11 @@ class MatchesController extends Controller {
     $clean_match->goals_away = $this->getGoals($match, 'away');
     $clean_match->predictions = $this->getPredictions($match);
 
+    $clean_match->has_score = FALSE;
+    if (!(is_null($match->score_home) && is_null($match->score_away))) {
+      $clean_match->has_score = TRUE;
+    }
+
     return $clean_match;
   }
 
@@ -108,10 +113,27 @@ class MatchesController extends Controller {
         'initials' => $prediction->user->initials,
         'score_home' => $prediction->score_home,
         'score_away' => $prediction->score_away,
+        'status' => $this->getPredictionStatus($prediction),
       ];
     }
 
     return $predictions;
+  }
+
+  protected function getPredictionStatus($prediction) {
+    if (predictedCorrectScore($prediction)) {
+      return 'exact_score';
+    }
+
+    if (predictedCorrectDifference($prediction)) {
+      return 'goal_difference';
+    }
+
+    if (predictedCorrectWinner($prediction)) {
+      return 'winner';
+    }
+
+    return 'loser';
   }
 
 }
