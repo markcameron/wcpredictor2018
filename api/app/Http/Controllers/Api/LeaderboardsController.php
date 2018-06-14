@@ -13,7 +13,7 @@ class LeaderboardsController extends Controller {
 
   const POINTS_CORRECT_SCORE = 5;
   const POINTS_CORRECT_DIFFERENCE = 3;
-  const POINTS_CORRECT_WINNER = 1;
+  const POINTS_CORRECT_WINNER = 2;
 
   protected $score;
 

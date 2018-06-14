@@ -38,6 +38,11 @@
             <span class="md-list-item-text">Leaderboard</span>
           </md-list-item>
 
+          <md-list-item to="/rules" @click="menuVisible = false;">
+            <md-icon>gavel</md-icon>
+            <span class="md-list-item-text">Rules</span>
+          </md-list-item>
+
           <md-list-item to="/settings" @click="menuVisible = false;">
             <md-icon>settings</md-icon>
             <span class="md-list-item-text">Settings</span>
