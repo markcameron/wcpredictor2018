@@ -34,4 +34,18 @@ class UsersController extends AuthenticatedController {
                                     ->with('match_count', $match_count);
   }
 
+  public function allowPrediction(User $user) {
+    $user->can_predict = 1;
+    $user->save();
+
+    return redirect()->back();
+  }
+
+  public function denyPrediction(User $user) {
+    $user->can_predict = 0;
+    $user->save();
+
+    return redirect()->back();
+  }
+
 }

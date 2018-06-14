@@ -68,4 +68,18 @@ class MatchesController extends AuthenticatedController {
     return redirect()->back();
   }
 
+  public function allowPrediction(Match $match) {
+    $match->can_predict = 1;
+    $match->save();
+
+    return redirect()->back();
+  }
+
+  public function denyPrediction(Match $match) {
+    $match->can_predict = 0;
+    $match->save();
+
+    return redirect()->back();
+  }
+
 }

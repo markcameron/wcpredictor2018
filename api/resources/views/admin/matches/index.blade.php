@@ -2,27 +2,43 @@
 
 @section('content')
 
-  <div class="container goals-admin">
+  <div class="container">
 
-    <div class="matches">
+    <div class="card">
 
-      @foreach ($matches as $match)
+      <div class="card-body">
 
-	<div class="row">
-	  <div class="col-xs-7">
-	    {{ $match->home_team }} - {{ $match->away_team }}
-	  </div>
-	  <div class="col-xs-2 text-center">
-	    {{ $match->score_home }} - {{ $match->score_away }}
-	  </div>
-	  <div class="col-xs-3 text-right">
-	    <a class="btn btn-action" href="{{ route('admin.matches.edit', $match->id) }}">
-	      Edit
-	    </a>
-	  </div>
-	</div>
+        <h5 class="card-title">Matches</h5>
 
-      @endforeach
+        <table class="table table-hover">
+          <tbody>
+            @foreach ($matches as $match)
+
+              <tr>
+                <td>{{ $match->home_team }}</td>
+                <td>{{ $match->away_team }}</td>
+                <td>{{ $match->score_home }} - {{ $match->score_away }}</td>
+                <td class="text-right">
+                  <a class="btn btn-info" href="{{ route('admin.matches.edit', $match->id) }}">
+                    Edit
+                  </a>
+                  @if ($match->can_predict)
+                    <a class="btn btn-success" href="{{ route('admin.matches.deny_prediction', $match->id) }}">
+                      Deny
+                    </a>
+                  @else
+                    <a class="btn btn-danger" href="{{ route('admin.matches.allow_prediction', $match->id) }}">
+                      Allow
+                    </a>
+                  @endif
+                </td>
+              </tr>
+
+            @endforeach
+          </tbody>
+        </table>
+
+      </div>
 
     </div>
 
