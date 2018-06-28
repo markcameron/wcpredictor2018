@@ -26,6 +26,11 @@
         </li>
       </ul>
 
+      <h2>Knockout stages</h2>
+
+      <p>Predictions for knockout games need ony be made by kick off of the game in question.</p>
+      <p>The score you predict is the result at the end of the game, be it 90 minutes or 120 should it go to extra time. Should the game be a draw after extra time, the penalites are not included in your prediction.</p>
+
     </div>
 
   </div>

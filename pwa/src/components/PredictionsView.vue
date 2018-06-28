@@ -88,6 +88,10 @@
         </md-card-actions>
 
       </md-card>
+      <md-snackbar :md-position="position" :md-duration="isInfinity ? Infinity : duration" :md-active.sync="showSnackbar" md-persistent>
+        <span>You can no longer predict scores for this match</span>
+        <md-button class="md-primary" @click="showSnackbar = false">Close</md-button>
+      </md-snackbar>
 
     </div>
 
@@ -212,6 +216,7 @@
            })
            .catch((error) => {
              this.sending = false
+             this.showSnackbar = true
              console.log(error)
            })
        } else {

@@ -89,12 +89,14 @@
        let todaysMatches = {}
        var today = new Date()
 
-       this.matches.map((match, key) => {
-         let matchDate = new Date(match.date)
-         if (matchDate.toDateString() === today.toDateString()) {
-           todaysMatches[key] = match
-         }
-       })
+       if (this.matches !== null) {
+         this.matches.map((match, key) => {
+           let matchDate = new Date(match.date)
+           if (matchDate.toDateString() === today.toDateString()) {
+             todaysMatches[key] = match
+           }
+         })
+       }
 
        return Object.keys(todaysMatches).length ? todaysMatches : null
      },
