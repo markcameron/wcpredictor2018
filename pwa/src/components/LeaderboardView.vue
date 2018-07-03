@@ -11,13 +11,13 @@
         <div class="md-list-item-text counter">
           {{ index + 1 }}.
         </div>
-        <div class="md-list-item-text md-layout-item md-size-60">
+        <div class="md-list-item-text md-layout-item md-size-55">
           <span v-if="user.nickname"><b>{{ user.nickname }}</b></span>
           <span v-if="!user.nickname"><b>{{ user.full_name }}</b></span>
           <span>{{ user.catchphrase }}</span>
           <span v-if="user.nickname">{{ user.full_name }}</span>
         </div>
-        <div class="md-list-item-text text-right md-layout-item md-size-10">
+        <div class="md-list-item-text text-right md-layout-item md-size-15">
           <span class="md-title">{{ user.score }}</span>
         </div>
       </md-list-item>
