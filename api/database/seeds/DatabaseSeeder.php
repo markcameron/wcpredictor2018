@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder {
     $this->call(RoundOf16MatchesTableSeeder::class);
     $this->call(RoundOf8MatchesTableSeeder::class);
     $this->call(RoundOf4MatchesTableSeeder::class);
+    $this->call(RoundOf2MatchesTableSeeder::class);
   }
 
 }
