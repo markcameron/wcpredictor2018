@@ -27,12 +27,7 @@ jobs:
     - name: Dockerize
       run: docker build -t markcameron/wcpredictor2018 -f api/.docker/Dockerfile api
     - name: Log in to registry
-      uses: actions/docker/login@master
-      env:
-        DOCKER_REGISTRY_URL: docker.pkg.github.com
-        DOCKER_USERNAME: ${{ github.actor }}
-        DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-        if: github.event_name == 'push'
+      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login -u ${{ github.actor }} --password-stdin docker.pkg.github.com
     - name: Push the latest Docker image
       if: success()
       run: docker push markcameron/wcpredictor2018:latest
