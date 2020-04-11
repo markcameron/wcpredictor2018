@@ -24,11 +24,14 @@ jobs:
       run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
     - name: Install Dependencies (PHP vendors)
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist --working-dir=api
-    - name: Dockerize
-      run: docker build -t markcameron/wcpredictor2018:latest -f api/.docker/Dockerfile api
-    - name: Log in to registry
-      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login -u ${{ github.actor }} --password-stdin docker.pkg.github.com
-    - name: Push the latest Docker image
-      if: success()
-      run: docker push docker.pkg.github.com/${{ github.repository }}/wcpredictor2018:latest
+
+  - uses: mr-smithers-excellent/docker-build-push@v2
+    with:
+      image: ${{ github.repository }}
+      tag: latest
+      registry: docker.pkg.github.com
+      dockerfile: api/.docker/Dockerfile
+      username: ${{ github.actor }}
+      password: ${{ secrets.GITHUB_TOKEN }}
+
 #                       docker.pkg.github.com/markcameron/wcpredictor2018/IMAGE_NAME:VERSION
