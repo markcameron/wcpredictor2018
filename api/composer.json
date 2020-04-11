@@ -11,8 +11,7 @@
         "laravel/framework": "5.6.*",
         "laravel/passport": "^6.0",
         "laravel/tinker": "^1.0",
-        "anandsiddharth/laravel-passport-socialite": "dev-passportv6",
-        "anandsiddharth/league-oauth2-social": "dev-oauth2server-v7"
+        "schedula/laravel-passport-socialite": "^1.0"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
@@ -62,14 +61,6 @@
         "optimize-autoloader": true
     },
     "repositories": [
-        {
-            "type": "path",
-            "url": "../../packages/lps"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/markcameron/league-oauth2-social"
-        }
     ],
     "minimum-stability": "dev",
     "prefer-stable": true
