@@ -20,6 +20,10 @@ class AppServiceProvider extends ServiceProvider {
   public function boot() {
     Schema::defaultStringLength(191);
     app(AuthorizationServer::class)->enableGrantType($this->makeSocialGrant(), Passport::tokensExpireIn());
+
+    if (config('app.env') === 'production') {
+      \URL::forceScheme('https');
+    }
   }
 
   /**
