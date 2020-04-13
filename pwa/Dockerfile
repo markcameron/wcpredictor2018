@@ -10,7 +10,7 @@ LABEL xyz.kram.maintainer="Mark CAMERON <mark.cameron.dev@gmail.com>" \
 COPY ./dist /usr/share/nginx/html
 
 # Configure nginx
-COPY .docker/config/nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx.conf /etc/nginx/nginx.conf
 
 # copy and overwrite the nginx default site config file with our own custom one
 COPY ./default.conf /etc/nginx/conf.d/default.conf
