@@ -20,6 +20,7 @@ RUN apk --no-cache add \
     php7-mysqli \
     php7-pdo \
     php7-pdo_pgsql \
+    php7-pdo_mysql \
     php7-session \
     php7-tokenizer \
     php7-zip \
