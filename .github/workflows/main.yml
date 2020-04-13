@@ -28,10 +28,10 @@ jobs:
     # Compile NPM assets
     - name: Install packages (NPM)
       run: npm install -f
-      working-directory: ./pwa
+      working-directory: ./api
     - name: Compile assets
       run: npm run prod
-      working-directory: ./pwa
+      working-directory: ./api
     # Dockerize and push
     - name: Dockerize
       run: docker build -t ${{ github.repository }}:api-latest -f api/.docker/Dockerfile api
