@@ -25,13 +25,6 @@ jobs:
       run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
     - name: Install Dependencies (PHP vendors)
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist --working-dir=api
-    # Compile NPM assets
-    - name: Install packages (NPM)
-      run: npm install -f
-      working-directory: ./api
-    - name: Compile assets
-      run: npm run prod
-      working-directory: ./api
     # Dockerize and push
     - name: Dockerize
       run: docker build -t ${{ github.repository }}:api-latest -f api/.docker/Dockerfile api
