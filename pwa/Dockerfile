@@ -9,7 +9,10 @@ LABEL xyz.kram.maintainer="Mark CAMERON <mark.cameron.dev@gmail.com>" \
 # copy artifact build from the 'build environment'
 COPY ./dist /usr/share/nginx/html
 
-# copy the overwrite the nginx default config file with our own custom one
+# Configure nginx
+COPY .docker/config/nginx.conf /etc/nginx/nginx.conf
+
+# copy and overwrite the nginx default site config file with our own custom one
 COPY ./default.conf /etc/nginx/conf.d/default.conf
 
 # expose port 80
