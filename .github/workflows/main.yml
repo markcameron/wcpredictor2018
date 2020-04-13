@@ -52,8 +52,10 @@ jobs:
     # Runs a single command using the runners shell
     - name: Install packages
       run: npm install
+      working-directory: ./pwa
     - name: Compile VueJS PWA
       run: npm run build
+      working-directory: ./pwa
     - name: Dockerize
       run: docker build -t ${{ github.repository }}:pwa-latest pwa
     - name: Log in to registry
