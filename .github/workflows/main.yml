@@ -27,12 +27,14 @@ jobs:
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist --working-dir=api
     # Dockerize and push
     - name: Dockerize
-      run: docker build -t ${{ github.repository }}:api-latest -f api/.docker/Dockerfile api
+      run: docker build -t ${{ github.repository }}:api-latest -t ${{ github.repository }}:api-1.${{ github.run_number}} -f api/.docker/Dockerfile api
     - name: Log in to registry
       run: echo ${{ secrets.DOCKER_HUB_PASSWORD }} | docker login -u markcameron --password-stdin docker.io
     - name: Push the latest Docker image
       if: success()
-      run: docker push ${{ github.repository }}:api-latest
+      run: |
+        docker push ${{ github.repository }}:api-latest
+        docker push ${{ github.repository }}:api-1.${{ github.run_number}}
 
   build-pwa:
     name: Build PWA
