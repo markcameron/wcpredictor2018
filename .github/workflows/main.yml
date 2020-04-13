@@ -53,9 +53,11 @@ jobs:
       run: npm run build
       working-directory: ./pwa
     - name: Dockerize
-      run: docker build -t ${{ github.repository }}:pwa-latest pwa
+      run: docker build -t ${{ github.repository }}:pwa-latest -t ${{ github.repository }}:pwa-1.${{ github.run_number}} pwa
     - name: Log in to registry
       run: echo ${{ secrets.DOCKER_HUB_PASSWORD }} | docker login -u markcameron --password-stdin docker.io
     - name: Push the latest Docker image
       if: success()
-      run: docker push ${{ github.repository }}:pwa-latest
+      run: |
+        docker push ${{ github.repository }}:pwa-latest
+        docker push ${{ github.repository }}:pwa-1.${{ github.run_number}}
